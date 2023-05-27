@@ -16,14 +16,10 @@
         ///////////////////////////SCRIPT SENSORS.PHP////////////////////////////
         /////////////////////////////////////////////////////////////////////////
 
-            
-        //MDP BD root : CNf&y!Ay@SNfJh3H$Xz@CoNm3i@rzK449&!6cs$G
-        //MDP BD admin : SndRshfoK6g&t4FqXAfK6rgKr@N#KE6iRQ?YsE$n
-
         //Identifiants BD
-        $user = "admin";
-        $pass = 'SndRshfoK6g&t4FqXAfK6rgKr@N#KE6iRQ?YsE$n';
-        $bd = "sae23";
+        $user = "admin";    
+        $pass = '';         //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
+        $bd = "sae23";      //Nom de la base de données à utiliser
 
         //Connexion à la base de données
         try {
