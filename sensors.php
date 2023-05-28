@@ -1,3 +1,6 @@
+<?php 
+    session_start() 
+?>
 <!DOCTYPE html>
 
 <html>
@@ -85,7 +88,8 @@
                 <?php
 
                     //Script qui permet de supprimer les choix par defaut vides du formulaire, et si un filtre sur la date est demandé il permet de la mettre au bon format
-                    foreach ($_GET as $key => $value) {
+                    foreach ($_GET as $key => $value) 
+                    {
                         if (isset($value) && $value ==="") 
                         {
                             unset($_GET[$key]);
@@ -100,7 +104,7 @@
                     for ($i = 0; $i < count($measures); $i++) 
                     {
 
-                        // Vérifier si le tableau $_GET est vide
+                        // Vérifie si le tableau $_GET est vide
                         if (empty($_GET)) 
                         {
                             echo "<tr>";
