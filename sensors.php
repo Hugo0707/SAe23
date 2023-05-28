@@ -17,7 +17,7 @@
         /////////////////////////////////////////////////////////////////////////
 
         //Identifiants BD
-        $user = "admin";    
+        $user = "root";    
         $pass = '';         //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
         $bd = "sae23";      //Nom de la base de données à utiliser
 
@@ -31,7 +31,7 @@
 
         //Récuperation des mesures
         try {
-            $result = mysqli_query($id_bd, "SELECT * FROM `vue_sensor_page`");
+            $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor_page`");
 
         } catch (Exception) {
            die("ERROR DATA RECOVERY FAILED");
@@ -49,10 +49,32 @@
         <section>
 
             <!-- Tableau pour afficher les valeurs recuperées depuis la base de données dans un tableau en HTML -->
+
+            <form action="" method="GET">
+                <!-- Formulaire permettant de recueillir les filtres choisis par l'utilisateur -->
+                <select name="ID_building" id="building">
+                    <option value="" selected></option>
+                    <option value="1"> Batiment R&T </option>
+                    <option value="2"> Batiment INFO </option>
+                </select>
+
+                <select name="Type_sensor" id="building">
+                    <option value="" selected></option>
+                    <option value="Temperature"> Temperature </option>
+                    <option value="Co2"> Co2 </option>
+                </select>
+
+                <input type="date" name="Date" id="date_input">
+
+                <input type="submit" value="Appliquer">
+
+            </form>
+
             <table>
             
                 <tr>
 
+                    <th> Capteur </th>
                     <th> Batiment </th>
                     <th> Mesure </th>
                     <th> Date </th>
@@ -61,22 +83,62 @@
                 </tr>
 
                 <?php
-                    // Script pour afficher les valeurs récuperées dans leur colonnes respectives depuis le tableau measures
-                    for ($i=0; $i < count($measures) ; $i++) 
-                    { 
-                        echo "<tr>";
-                        for ($j=0; $j < 4; $j++) { 
-                            echo "<td>" . $measures[$i][$j] . "</td>";
+
+                    //Script qui permet de supprimer les choix par defaut vides du formulaire, et si un filtre sur la date est demandé il permet de la mettre au bon format
+                    foreach ($_GET as $key => $value) {
+                        if (isset($value) && $value ==="") 
+                        {
+                            unset($_GET[$key]);
                         }
-                        echo "</tr>";
+                        if ($key == "Date" && !empty($value)) //Changement du format de la date Si une date est renseignée
+                        {
+                            $_GET[$key] = date("d/m/Y", strtotime($value));
+                        }
+                    }
+
+                    // Script pour afficher les valeurs récupérées dans leur colonnes respectives depuis le tableau measures
+                    for ($i = 0; $i < count($measures); $i++) 
+                    {
+
+                        // Vérifier si le tableau $_GET est vide
+                        if (empty($_GET)) 
+                        {
+                            echo "<tr>";
+                            for ($j = 1; $j < 6; $j++) {
+                                echo "<td>" . $measures[$i][$j] . "</td>";
+                            }
+                            echo "</tr>";
+                        }
+                        else 
+                        {
+                            
+                            // Script permettant de verifier si il les filtres renseignés et les mesures correspondent
+                            
+                            $match = true;
+                            foreach ($_GET as $key => $value) {
+                                if ($value != $measures[$i][$key]) {
+                                    $match = false;
+                                    break; 
+                                }
+                            }
+                        
+                            // Si tous les filtres renseignés correspondent avec la mesure, la mesure est affichée
+                            if ($match) {
+                                echo "<tr>";
+                                for ($j = 1; $j < 6; $j++) {
+                                    echo "<td>" . $measures[$i][$j] . "</td>";
+                                }
+                                echo "</tr>";
+                            }
+                        }
                     }
                 ?>
 
             </table>
-
 
         </section>
 
     </body>
 
 </html>
+
