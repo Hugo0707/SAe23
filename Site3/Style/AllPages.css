@@ -1,0 +1,97 @@
+/* ================================================================= */
+                            /* color chart */
+/* ================================================================= */
+
+/* Grey  rgb(46, 66, 75); */
+/* Blue rgb(47, 170, 187); */
+/* Yellow rgb(250, 180, 19); */
+/* Red rgb(252, 79, 6); */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif; 
+}
+body {
+    background-color:rgb(255, 255, 255);
+}
+
+.main {
+    margin: 90px 70px 30px 70px;
+}
+.main ul {
+    background-color: rgba(240, 240, 240, 0.5);
+    backdrop-filter: blur(1px);
+    border-radius: 20px;
+    align-items: center;
+    margin: 20px 30px 20px 30px;
+}
+/* ================================================================= */
+                            /* Cercles */
+/* ================================================================= */
+
+.circle {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+  
+.circle.one {
+    background-color: rgb(47, 170, 187);
+    z-index: -5;
+    width: 200px;
+    height: 200px;
+    top: 450px;
+}
+  
+.circle.two {
+    background-color: rgb(250, 180, 19);
+    z-index: -6;
+    width: 400px;
+    height: 400px;
+    top: 700px;
+    left: 100px;
+}
+  
+.circle.three {
+    background-color: rgb(252, 79, 6);
+    z-index: -3;
+    width: 100px;
+    height: 100px;
+    top: 400px;
+    left: 175px;
+}
+
+.circle.four {
+    background-color: rgb(37, 139, 30);
+    z-index: -4;
+    width: 75px;
+    height: 75px;
+    top: 800px;
+    left: 300px;
+}
+
+.circle.five {
+    background-color: rgb(193, 33, 198);
+    z-index: -2;
+    width: 25px;
+    height: 25px;
+    top: 750px;
+    left: 370px;
+}
+
+.circle.sixe {
+    background-color: rgb(252, 6, 6);
+    z-index: -1;
+    width: 50px;
+    height: 50px;
+    top: 300px;
+    left: 100px;
+}
+
