@@ -1,5 +1,14 @@
 <?php 
     session_start();
+
+    if ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Admin")) 
+    {
+        echo '<script> window.location.href = "./admin.php"; </script>';
+    }
+    elseif ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Manager")) {
+        echo '<script> window.location.href = "./manager.php"; </script>';
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +19,10 @@
     <title>Connection</title>
 </head>
 <body>
+
+    <div id="js-message" style="display: block;">
+        <center> <h1> Veuillez activer JavaScript pour profiter pleinement de notre site. </h1> </center>
+    </div>
     
     <form action="./login.php" method="post">
 
@@ -18,6 +31,7 @@
         <br><br>
         <label for="passwd"> Password : </label>
         <input type="password" name="passwd">
+        <br><br>
 
         <input type="submit" value="Send">
 
@@ -27,3 +41,9 @@
 
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('js-message').style.display = 'none';
+    });
+</script>

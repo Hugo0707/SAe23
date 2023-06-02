@@ -1,5 +1,5 @@
 <?php 
-    session_start() 
+    session_start(); 
 ?>
 <!DOCTYPE html>
 
@@ -20,7 +20,7 @@
         /////////////////////////////////////////////////////////////////////////
 
         //Identifiants BD
-        $user = "root";    
+        $user = "admin";    
         $pass = '';         //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
         $bd = "sae23";      //Nom de la base de données à utiliser
 

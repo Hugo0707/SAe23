@@ -1,14 +1,12 @@
 <?php
-    
+    session_start();
+      
     if (empty($_POST["login"]) || empty($_POST["passwd"])) 
     {
         header('Location: ./connection.php');
         exit();
     }
-    else 
-    {
-        session_start();
-    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Connexion en cours...</title>
 </head>
 <body>
 
@@ -25,9 +23,10 @@
 
         <?php       
             //Identifiants BD
-            $user = "root";    
+            $user = "admin";    
             $pass = '';          //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
             $bd = "sae23";      //Nom de la base de données à utiliser
+            
             //Connexion à la base de données
             try {
                 $id_bd = mysqli_connect("localhost", $user, $pass, $bd);
@@ -49,10 +48,6 @@
                 $credentials[$i] = mysqli_fetch_array($result);
             }
         
-            //print_r($_POST);
-            //echo "<br> <br>";
-            //print($credentials[0][1]);
-            //die("Fin");
             $login = $_POST["login"];
             $passwd = $_POST["passwd"];
         
@@ -60,17 +55,44 @@
             for ($i=0; $i < count($_POST) ; $i++) { 
                 if (password_verify($passwd, $credentials[$i][1]) && $login == $credentials[$i][0] ) {
                     $known=true;
+                    $_SESSION["login"] = $credentials[$i][0];
+                    $_SESSION["grade"] = $credentials[$i][2];
                     echo "<center> <h1> Connexion réussie ! </h1>";
-                    echo "Vous êtes : " . $credentials[$i][2] . "</center>" ; 
+                    echo "Vous êtes : " . $credentials[$i][2] . "</center>" ;
+
+                    if ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Admin"))
+                    {
+                        echo '<script> window.location.href = "./admin.php"; </script>';
+                    }
+                    elseif ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Manager")) {
+                        echo '<script> window.location.href = "./manager.php"; </script>';
+                    }
+                     
                 }
             }
             if (!$known) {
-                echo "Mot de passe ou login incorrect !";
+                echo '<center> <h1> Login ou Mot de Passe Incorrect ! </h1> </center>';
+                echo '
+                <script>
+                    setTimeout(function() {
+                        window.location.href = "./connection.php";
+                    }, 1500); 
+                </script>';
             }
         
         ?>
 
     </section>
 
+
+    <div id="js-message" style="display: block;">
+        <center> <h1> Veuillez activer JavaScript pour profiter pleinement de notre site. </h1> </center>
+    </div>
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('js-message').style.display = 'none';
+    });
+</script>
