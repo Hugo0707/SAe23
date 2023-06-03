@@ -1,12 +1,12 @@
 <?php 
     session_start();
-    
-    if ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Admin"))
+
+    if ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Manager"))
     {
-        echo "Connecté en tant qu'Administrateur";
+        echo " <center> <h1> Connecté en tant que Manager </h1> </center>";
     }
     else {
-        echo '<script> window.location.href = "./connection.php"; </script>';
+        echo '<script> window.location.href = "./login.php"; </script>';
     }
 ?>
 
@@ -16,9 +16,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Page</title>
+        <title>Manager Page</title>
     </head>
-
     <body>
 
         <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -27,10 +26,13 @@
         </form>
 
         <?php
+
             if (isset($_GET["logout"])) {   
                 session_destroy();
                 echo '<script> window.location.href = "./connection.php"; </script>';
             }
+            
+        
         ?>
 
     </body>

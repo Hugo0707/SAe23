@@ -1,5 +1,6 @@
 <?php 
-    session_start(); 
+    session_start();
+    require_once("../config/config.php");
 ?>
 <!DOCTYPE html>
 
@@ -19,14 +20,10 @@
         ///////////////////////////SCRIPT SENSORS.PHP////////////////////////////
         /////////////////////////////////////////////////////////////////////////
 
-        //Identifiants BD
-        $user = "admin";    
-        $pass = '';         //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
-        $bd = "sae23";      //Nom de la base de données à utiliser
 
         //Connexion à la base de données
         try {
-            $id_bd = mysqli_connect("localhost", $user, $pass, $bd);
+            $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
         } 
         catch(Exception) {
             die("DATABASE CONNECTION ERROR");

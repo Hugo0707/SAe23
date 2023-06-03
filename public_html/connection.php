@@ -21,7 +21,7 @@
 <body>
 
     <div id="js-message" style="display: block;">
-        <center> <h1> Veuillez activer JavaScript pour profiter pleinement de notre site. </h1> </center>
+        <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
     </div>
     
     <form action="./login.php" method="post">

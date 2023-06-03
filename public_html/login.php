@@ -1,12 +1,11 @@
 <?php
     session_start();
-      
     if (empty($_POST["login"]) || empty($_POST["passwd"])) 
     {
-        header('Location: ./connection.php');
+        header('Location: ../connection.php');
         exit();
     }
-    
+    require_once("../config/config.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,14 +21,10 @@
     <section>
 
         <?php       
-            //Identifiants BD
-            $user = "admin";    
-            $pass = '';          //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
-            $bd = "sae23";      //Nom de la base de données à utiliser
             
             //Connexion à la base de données
             try {
-                $id_bd = mysqli_connect("localhost", $user, $pass, $bd);
+                $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
             catch(Exception) {
                 die("DATABASE CONNECTION ERROR");
@@ -86,7 +81,7 @@
 
 
     <div id="js-message" style="display: block;">
-        <center> <h1> Veuillez activer JavaScript pour profiter pleinement de notre site. </h1> </center>
+        <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
     </div>
 </body>
 </html>
