@@ -30,11 +30,11 @@
             <span class="title">SAE 23</span>
             <ul class="pages">
                 <li><a class="effect-underline" href="../Index.html">Home</a></li>
-                <li><a class="effect-underline" href="Sensors.html">Sensors</a></li>
+                <li><a class="effect-underline" href="Sensors.php">Sensors</a></li>
                 <li><a class="effect-underline" href="Contact.html">Contact</a></li>
                 <li><a class="effect-underline" href="Legal_Information.html">Legal Notice</a></li>
             </ul>
-            <span class="main_btn"><a href="Account.html">Not connected</a></span>
+            <span class="main_btn"><a href="Account.php">Not connected</a></span>
             <img class="burger" src="MenuBurger.png" alt="menu burger">
         </nav> 
     </header>

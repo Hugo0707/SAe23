@@ -47,17 +47,17 @@ for ($i=0; $i < mysqli_num_rows($result); $i++) {
 ?>
 <body>
     <header>
-        <nav class="nav">
+    <nav class="nav">
             <span class="title">SAE 23</span>
             <ul class="pages">
                 <li><a class="effect-underline" href="../Index.html">Home</a></li>
-                <li><a class="effect-underline" href="Sensors.html">Sensors</a></li>
+                <li><a class="effect-underline" href="Sensors.php">Sensors</a></li>
                 <li><a class="effect-underline" href="Contact.html">Contact</a></li>
                 <li><a class="effect-underline" href="Legal_Information.html">Legal Notice</a></li>
             </ul>
-            <span class="main_btn"><a href="Account.html">Log In</a></span>
+            <span class="main_btn"><a href="Account.php"> Log In</a></span>
             <img class="burger" src="MenuBurger.png" alt="menu burger">
-        </nav> 
+        </nav>  
     </header>
     <section class="background">
         <div class="circle one"></div>
