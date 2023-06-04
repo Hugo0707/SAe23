@@ -71,7 +71,7 @@
                 <script>
                     setTimeout(function() {
                         window.location.href = "./connection.php";
-                    }, 1500); 
+                    }, 2000); 
                 </script>';
             }
         

@@ -32,8 +32,32 @@
                 echo '<script> window.location.href = "./connection.php"; </script>';
             }
             
+            //Connexion à la base de données
+            try {
+                $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+            } 
+            catch(Exception) {
+                die("DATABASE CONNECTION ERROR");
+            }
         
-        ?>
+            //Récuperation des mesures
+            try {
+                $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor_page`");
+            
+            } catch (Exception) {
+               die("ERROR DATA RECOVERY FAILED");
+            }
+            
+            //Placement des valeurs dans le tableau measures
+            for ($i=0; $i < mysqli_num_rows($result); $i++) { 
+                $measures[$i] = mysqli_fetch_array($result);
+            
+            
+            ?>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
+        </div>
 
     </body>
 </html>

@@ -44,48 +44,100 @@
                 <th> Building </th>
             </tr>
 
-        </table>
+    
         
-        <?php
-            if (isset($_GET["logout"])) {   
-                session_destroy();
-                echo '<script> window.location.href = "./connection.php"; </script>';
-            }
-        
-            //Connexion à la base de données
-            try {
-                $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
-            } 
-            catch(Exception) {
-                die("DATABASE CONNECTION ERROR");
-            }
-        
-            //Récuperation des logins
-            try {
-                $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor`");
-            
-            } catch (Exception) {
-               die("ERROR DATA RECOVERY FAILED");
-            }
-        
-            //Placement du resultat dans un tableau
-            for ($i=0; $i < mysqli_num_rows($result); $i++) { 
-                $sensors[$i] = mysqli_fetch_array($result);
-            }
-            
-            echo "<form method=post action='./delete_sensor.php'>";
-            echo "<ul>";
-            for ($i = 0; $i < count($sensors); $i++)
-            {
-                echo "<li>";
-                for ($j = 1; $j < 4; $j++) {
-                    echo  $sensors[$i][$j];
+            <?php
+                if (isset($_GET["logout"])) {   
+                    session_destroy();
+                    echo '<script> window.location.href = "./connection.php"; </script>';
                 }
-                echo "<input type='submit' value='Delete' name=" . $sensors[$i][0] . "' > <li>";
-            }
-            echo "<ul>";
-            echo "</form>";
-        ?>
+            
+                //Connexion à la base de données
+                try {
+                    $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+                } 
+                catch(Exception) {
+                    die("DATABASE CONNECTION ERROR");
+                }
+            
+                //Récuperation des capteurs
+                try {
+                    $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor`");
+                
+                } catch (Exception) {
+                   die("ERROR DATA RECOVERY FAILED");
+                }
+            
+                //Placement du resultat dans un tableau
+                for ($i=0; $i < mysqli_num_rows($result); $i++) { 
+                    $sensors[$i] = mysqli_fetch_array($result);
+                }
+
+                echo "<form method='post' action='./delete_sensor.php'>";
+                for ($i = 0; $i < count($sensors); $i++)
+                {
+                    echo "<tr>";
+                    for ($j = 1; $j < 4; $j++) {
+                        echo  "<td>". $sensors[$i][$j] . "</td>";
+                    }
+                    echo "<td> <input type='submit' value='delete' name='" . $sensors[$i][0] . "'> </td> </tr>";
+                }
+                echo "</form>";
+            ?>
+
+        </table>
+        <a href="./add_sensor.php"> Ajouter un Capteur </a>
+
+
+
+        <h3> Batiments Crées : </h3>
+
+        <table>
+
+            <tr>
+                <th> Name </th>
+                <th> Manager </th>
+                <th> Email </th>
+            </tr>
+
+            <?php 
+
+
+                $query = "SELECT ID_building AS id,
+                 Name_Building AS Name,
+                 Login_manager AS Manager,
+                 Email_Manager AS Email
+                 FROM `building`";
+            
+                //Récuperation des Batiments
+                try {
+                    $result = mysqli_query($id_bd, $query);
+                
+                } catch (Exception) {
+                   die("ERROR DATA RECOVERY FAILED");
+                }
+            
+                //Placement du resultat dans un tableau
+                for ($i=0; $i < mysqli_num_rows($result); $i++) { 
+                    $buildings[$i] = mysqli_fetch_array($result);
+                }
+
+                echo "<form method=post action='./delete_building.php'>";
+                for ($i = 0; $i < count($buildings); $i++)
+                {
+                    echo "<tr>";
+                    for ($j = 1; $j < 4; $j++) {
+                        echo  "<td>". $buildings[$i][$j] . "</td>";
+                    }
+                    echo "<td> <input type='submit' value='Delete' name='" . $buildings[$i][0] . "'> </td> </tr>";
+                }
+                echo "</form>";
+
+            ?>
+
+        </table>
+
+        <a href="./add_building.php"> Ajouter un Batiment </a>
 
 
     </body>
