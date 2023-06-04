@@ -32,7 +32,6 @@ body {
     background-color: rgba(240, 240, 240, 0.5);
     backdrop-filter: blur(1px);
     border-radius: 20px;
-    align-items: center;
     margin: 20px 30px 20px 30px;
 }
 
@@ -245,6 +244,7 @@ footer ul li a {
 .main .home {
     display: flex;
     text-align: justify;
+    align-items: center;
 }
 
 .home .text {
@@ -324,7 +324,9 @@ input[type="submit"]:active {
 /* ================================================================= */
                             /* Legal Information */
 /* ================================================================= */
-
+.notice {
+    padding-bottom: 20px;
+}
 .notice li h1 {
     text-align: center;
     font-size: 40px;
@@ -334,10 +336,14 @@ input[type="submit"]:active {
 .notice li h2 {
     margin: 10px;
     margin-top: 30px;
+    padding-left: 10px;
     color: rgb(94, 185, 218);
 }
 .notice li p {
     margin: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: justify;
 }
 
 
@@ -398,3 +404,67 @@ input[type="submit"]:active {
     scale: 0.99;
 }
 
+/* ================================================================= */
+                            /* Sensors */
+/* ================================================================= */
+
+.sensors {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sensors h1 {
+    color: rgb(94, 185, 218);
+    font-size: 40px;
+}
+.sensors ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sensors form {
+    width: 100%;
+}
+.sensors select {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.sensors input[type="date"] {
+    padding: 6.5px;
+}
+.sensors input[type="submit"] {
+    width: 80%;
+    margin-left: 40px;
+}
+
+table {
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0;
+    border: 1px solid black;
+    margin-bottom: 50px;
+  }
+  
+  thead {
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+  }
+  
+  th {
+    padding: 20px; 
+    text-align: center; 
+    border-bottom: 1px solid #ddd; 
+  }
+  
+  td {
+    padding: 20px; 
+    border-bottom: 1px solid #ddd; 
+    text-align: center;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
