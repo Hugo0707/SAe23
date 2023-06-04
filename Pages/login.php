@@ -89,10 +89,9 @@
         <center> <h1> Veuillez activer JavaScript pour profiter pleinement de notre site. </h1> </center>
     </div>
 </body>
-</html>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('js-message').style.display = 'none';
     });
 </script>
+</html>
