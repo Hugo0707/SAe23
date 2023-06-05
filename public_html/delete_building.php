@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    if (!($_SESSION["grade"] === "Admin") || empty($_POST))
+    if ((!($_SESSION["grade"] === "Admin") || empty($_POST)) )
     {
         header('Location: ./connection.php');
         exit();
@@ -38,8 +38,8 @@
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
-            catch(Exception) {
-                die("DATABASE CONNECTION ERROR");
+            catch(Exception $e) {
+                die("DATABASE CONNECTION ERROR : <br>" . $e);
             }
             //Enregistrement de l'identifiant du Batiment a surpprimer dans cette variable
             //Verification de l'entrée de l'utilisateur avec la fonction mysli_real_escape_string permettant de prévenir les injections sql
@@ -75,12 +75,11 @@
 
                     //Enregistrement de la requete qui permettra de supprimer ce Batiment de la base de données dans la variable $query
                     $query = "DELETE FROM building WHERE ID_building = " . $_POST['delete']; 
-                
+
                     try {
                         mysqli_query($id_bd, $query);
-                    } catch (Exception) {
-                        echo " ERREUR :  ";
-                        die("ERREUR REQUETE SQL Batiment NON SUPPRIMÉ");
+                    } catch (Exception $e) {
+                        die("ERREUR REQUETE SQL Batiment NON SUPPRIMÉ : <br>" . $e );
                     }
 
                     echo '
@@ -88,7 +87,7 @@
                         <script>
                             setTimeout(function() {
                                 window.location.href = "./admin.php";
-                            }, 2000); 
+                            }, 1500); 
                         </script>';
                 }
                 elseif ($_POST['confirm'] === "no") {

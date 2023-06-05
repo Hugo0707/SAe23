@@ -38,8 +38,8 @@
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
-            catch(Exception) {
-                die("DATABASE CONNECTION ERROR");
+            catch(Exception $e) {
+                die("DATABASE CONNECTION ERROR : <br>" . $e);
             }
             //Enregistrement de l'identifiant du capteur a surpprimer dans cette variable
             //Verification de l'entrée de l'utilisateur avec la fonction mysli_real_escape_string permettant de prévenir les injections sql
@@ -80,7 +80,7 @@
                         mysqli_query($id_bd, $query);
                     } catch (Exception $e) {
                         echo " ERREUR :  " . $e;
-                        die("ERREUR REQUETE SQL CAPTEUR NON SUPPRIMÉ" . $e);
+                        die("ERREUR REQUETE SQL CAPTEUR NON SUPPRIMÉ : <br>" . $e);
                     }
 
                     echo '
@@ -88,7 +88,7 @@
                         <script>
                             setTimeout(function() {
                                 window.location.href = "./admin.php";
-                            }, 2000); 
+                            }, 1500); 
                         </script>';
                 }
                 elseif ($_POST['confirm'] === "no") {

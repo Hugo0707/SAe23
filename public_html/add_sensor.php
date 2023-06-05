@@ -18,29 +18,48 @@
     <title>Ajout de Capteur</title>
 </head>
 <body>
-    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
+        </div>
+    </script>
+
     <?php 
     
         //Connexion à la base de données
         try {
             $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
         } 
-        catch(Exception) {
-            die("DATABASE CONNECTION ERROR");
+        catch(Exception $e) {
+            die("DATABASE CONNECTION ERROR : <br>" . $e);
         }
     
         //Récuperation des capteurs
         try {
             $result = mysqli_query($id_bd, "SELECT ID_building, Name_building FROM `building`");
         
-        } catch (Exception) {
-           die("ERROR DATA RECOVERY FAILED");
+        } catch (Exception $e) {
+           die("ERROR DATA RECOVERY FAILED : <br>" . $e);
         }
 
         //Placement des valeurs dans le tableau buildings
-        for ($i=0; $i < mysqli_num_rows($result); $i++) { 
-            $buildings[$i] = mysqli_fetch_array($result);
+        $buildings = fetchResults($result);
+
+        if (empty($buildings)) {
+            echo '<center> <h1> Vous devez d\'abord créer un batiment avant cela ! </h1> </center>
+                    <script>
+                        setTimeout(function() {
+                            window.location.href = "./admin.php";
+                        }, 1500); 
+                    </script>';
         }
+
         
     ?>
 
@@ -86,15 +105,13 @@
             
             echo "<form action='' method='POST'> <label for='Room_sensor'> Salle : </label> <select name='Room_sensor'>";
 
-                //Séparation de l'id du batiment ainsi que du nom avec le quel nous allons faire la condition
-
+                //Permet d'afficher uniquement les salles associées au batiment choisi dans le formulaire précedent 
                 for ($i=0; $i < count($buildings); $i++) { 
-                    
+                    //La fonction explode nous permet la séparation de l'id du batiment ainsi que du nom avec le quel nous allons faire la condition
                     if ($buildings[$i]['Name_building'] == explode('-', $_GET['ID_building'])[1]) {
 
-                        echo $buildings[$i]['Name_building'] . " == " . explode('-', $_GET['ID_building'])[1];
-                        
                         foreach ($building_rooms[$buildings[$i]['Name_building']] as $key => $room) {
+
                             echo "<option value ='" . $building_rooms[$buildings[$i]['Name_building']][$key] . "'> " . $building_rooms[$buildings[$i]['Name_building']][$key] . "</option>";
                         }
                     }
@@ -111,8 +128,6 @@
 
     ?>
     
-
-
     <?php 
 
         if ((!empty($_POST['Type_sensor']) && !empty($_POST['Room_sensor']) && !empty($_POST['ID_building']))) { 
@@ -121,8 +136,8 @@
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
-            catch(Exception) {
-                die("DATABASE CONNECTION ERROR");
+            catch(Exception $e) {
+                die("DATABASE CONNECTION ERROR : <br>" . $e);
             }
 
             //Recuperations des valeurs données par le gestionnaire 
@@ -134,19 +149,17 @@
             $query = "INSERT INTO sensor (Type_sensor, Room_sensor, ID_building) 
                 VALUES ('$Type_sensor', '$Room_sensor', '$ID_building');";
 
-
-
             try {
                 mysqli_query($id_bd, $query);
             } catch (Exception $e) {
-                die("ERREUR REQUETE SQL LE CAPTEUR N'A PAS ÉTÉ AJOUTÉ !" . $e);
+                die("ERREUR REQUETE SQL LE CAPTEUR N'A PAS ÉTÉ AJOUTÉ ! : <br>" . $e);
             }
 
             echo '<center> <h4> CAPTEUR AJOUTÉ AVEC SUCCES ! </h4> </center>
                 <script>
                     setTimeout(function() {
                         window.location.href = "./admin.php";
-                    }, 2000); 
+                    }, 1500); 
                 </script>';
 
         }

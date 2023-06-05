@@ -3,7 +3,7 @@
     
     if ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Admin"))
     {
-        echo "Connecté en tant qu'Administrateur";
+        echo "<h2> Connecté en tant qu'Administrateur </h2>";
     }
     else {
         echo '<script> window.location.href = "./connection.php"; </script>';
@@ -25,6 +25,11 @@
     <div id="js-message" style="display: block;">
         <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+    </script>
 
     <body>
 
@@ -37,14 +42,6 @@
         <h3> Capteurs Crées : </h3>
 
         <table>
-
-            <tr>
-                <th> Type</th>
-                <th> Room </th>
-                <th> Building </th>
-            </tr>
-
-    
         
             <?php
                 if (isset($_GET["logout"])) {   
@@ -56,33 +53,48 @@
                 try {
                     $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 } 
-                catch(Exception) {
-                    die("DATABASE CONNECTION ERROR");
+                catch(Exception $e) {
+                    die("DATABASE CONNECTION ERROR : <br>" . $e);
                 }
             
                 //Récuperation des capteurs
                 try {
                     $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor_admin`");
                 
-                } catch (Exception) {
-                   die("ERROR DATA RECOVERY FAILED");
+                } catch (Exception $e) {
+                   die("ERROR DATA RECOVERY FAILED : <br>" . $e);
                 }
             
                 //Placement du resultat dans un tableau
-                for ($i=0; $i < mysqli_num_rows($result); $i++) { 
-                    $sensors[$i] = mysqli_fetch_array($result);
-                }
+                $sensors = fetchResults($result);
 
-                echo "<form method='post' action='./delete_sensor.php'>";
-                for ($i = 0; $i < count($sensors); $i++)
+                if (!empty($sensors)) 
                 {
-                    echo "<tr>";
-                    for ($j = 1; $j < 4; $j++) {
-                        echo  "<td>". $sensors[$i][$j] . "</td>";
+                    
+                    echo'
+                    <tr>
+                        <th> Type</th>
+                        <th> Room </th>
+                        <th> Building </th>
+                    </tr>';
+
+                    echo "<form method='post' action='./delete_sensor.php'>";
+                    for ($i = 0; $i < count($sensors); $i++)
+                    {
+                        echo "<tr>";
+                        for ($j = 1; $j < 4; $j++) {
+                            echo  "<td>". $sensors[$i][$j] . "</td>";
+                        }
+                        echo "<td> <input type='submit' value='delete' name='" . $sensors[$i][0] . "'> </td> </tr>";
                     }
-                    echo "<td> <input type='submit' value='delete' name='" . $sensors[$i][0] . "'> </td> </tr>";
+                    echo "</form>";
+
                 }
-                echo "</form>";
+                else 
+                {
+                    echo"<h4> Aucun Capteur </h4>";
+                }
+    
             ?>
 
         </table>
@@ -93,12 +105,6 @@
         <h3> Batiments Crées : </h3>
 
         <table>
-
-            <tr>
-                <th> Name </th>
-                <th> Manager </th>
-                <th> Email </th>
-            </tr>
 
             <?php 
 
@@ -113,25 +119,38 @@
                 try {
                     $result = mysqli_query($id_bd, $query);
                 
-                } catch (Exception) {
-                   die("ERROR DATA RECOVERY FAILED");
+                } catch (Exception $e) {
+                   die("ERROR DATA RECOVERY FAILED : . $e");
                 }
             
                 //Placement du resultat dans un tableau
-                for ($i=0; $i < mysqli_num_rows($result); $i++) { 
-                    $buildings[$i] = mysqli_fetch_array($result);
-                }
+                $buildings = fetchResults($result);
 
-                echo "<form method=post action='./delete_building.php'>";
-                for ($i = 0; $i < count($buildings); $i++)
-                {
-                    echo "<tr>";
-                    for ($j = 1; $j < 4; $j++) {
-                        echo  "<td>". $buildings[$i][$j] . "</td>";
+                if (!empty($buildings)) {
+
+                    echo'
+                    <tr>
+                        <th> Name </th>
+                        <th> Manager </th>
+                        <th> Email </th>
+                    </tr>
+                    ';
+    
+                    echo "<form method=post action='./delete_building.php'>";
+                    for ($i = 0; $i < count($buildings); $i++)
+                    {
+                        echo "<tr>";
+                        for ($j = 1; $j < 4; $j++) {
+                            echo  "<td>". $buildings[$i][$j] . "</td>";
+                        }
+                        echo "<td> <input type='submit' value='Delete' name='" . $buildings[$i][0] . "'> </td> </tr>";
                     }
-                    echo "<td> <input type='submit' value='Delete' name='" . $buildings[$i][0] . "'> </td> </tr>";
+                    echo "</form>";
                 }
-                echo "</form>";
+                else 
+                {
+                    echo"<h4> Aucun Batiment </h4>";
+                }
 
             ?>
 
@@ -142,9 +161,3 @@
 
     </body>
 </html>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('js-message').style.display = 'none';
-    });
-</script>

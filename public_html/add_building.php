@@ -24,23 +24,20 @@
         try {
             $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
         } 
-        catch(Exception) {
-            die("DATABASE CONNECTION ERROR");
+        catch(Exception $e) {
+            die("DATABASE CONNECTION ERROR : <br>" . $e);
         }
     
         //Récuperation des capteurs
         try {
             $result = mysqli_query($id_bd, "SELECT ID_building, Name_building FROM `building`");
         
-        } catch (Exception) {
-           die("ERROR DATA RECOVERY FAILED");
+        } catch (Exception $e) {
+           die("ERROR DATA RECOVERY FAILED : <br>" . $e);
         }
 
         //Placement des valeurs dans le tableau buildings
-        for ($i=0; $i < mysqli_num_rows($result); $i++) { 
-            $buildings[$i] = mysqli_fetch_array($result);
-        }
-
+        $buildings = fetchResults($result);
     ?>
     
 
@@ -52,22 +49,29 @@
         <select name="Name_building" >
             <?php 
                 //Permet de proposer que les batiments qui n'ont pas dèjà été ajoutés
+                $no_option = true;
                 foreach ($building_rooms as $key => $array) {
                     
-                    $no_option = true;
                     $display = true;
-                    for ($i=0; $i <count($buildings) ; $i++) { 
+                    if (!empty($buildings)) {
+                        for ($i=0; $i <count($buildings) ; $i++) { 
 
-                        if ($buildings[$i]['Name_building'] == $key )
-                        {
-                            echo $buildings[$i]['Name_building'] . $key;
-                            $display = false;
+                            if ($buildings[$i]['Name_building'] == $key )
+                            {
+                                echo $buildings[$i]['Name_building'] . $key;
+                                $display = false;
+                            }
                         }
-                    }
-                    if ($display) {
+                        if ($display) {
+                            echo "<option value='" . $key . "'>" . $key . "</option>";
+                            $no_option = false;
+                        }
+                    }else {
+                        //Permet d'afficher tous les batiments disponibles si aucun batiment n'a été recuperé depuis la bd
                         echo "<option value='" . $key . "'>" . $key . "</option>";
                         $no_option = false;
                     }
+                    
                 }
                 echo"</select>";
                 if ($no_option) {
@@ -76,7 +80,7 @@
                     <script>
                         setTimeout(function() {
                             window.location.href = "./admin.php";
-                        }, 2000); 
+                        }, 1500); 
                     </script>';
                 }
                 
@@ -106,18 +110,19 @@
             $Name_building = mysqli_real_escape_string($id_bd, $_POST['Name_building']);
             $Login_manager = mysqli_real_escape_string($id_bd, $_POST['Login_manager']);
             $Email_manager = mysqli_real_escape_string($id_bd, $_POST['Email_manager']);
+            
             //Chiffrement du mdp en bcrypt
             $Password_manager = password_hash($_POST['Password_manager'], PASSWORD_DEFAULT);
 
             //Requete permettant d'inserer les données
             $query = "INSERT INTO building (Name_building, Login_manager, Email_manager, Password_manager) 
-                VALUES ( '$Name_building', '$Login_manager', '$Email_manager', '$Password_manager')";
-            
+                VALUES ( '$Name_building', '$Login_manager', '$Email_manager', '" . $Password_manager . "')";
+
             //Execution de la requete
             try {
                 mysqli_query($id_bd, $query);
-            } catch (Exception) {
-                die("ERREUR REQUETE SQL LE BATIMENT N'A PAS ETE AJOUTÉ !");
+            } catch (Exception $e) {
+                die("ERREUR REQUETE SQL LE BATIMENT N'A PAS ETE AJOUTÉ ! : <br>" . $e);
             }
             
             //Redirection vers la page admin
@@ -125,7 +130,7 @@
                 <script>
                     setTimeout(function() {
                         window.location.href = "./admin.php";
-                    }, 2000); 
+                    }, 1500); 
                 </script>';
 
 
