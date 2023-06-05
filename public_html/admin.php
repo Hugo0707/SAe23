@@ -62,7 +62,7 @@
             
                 //Récuperation des capteurs
                 try {
-                    $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor`");
+                    $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor_admin`");
                 
                 } catch (Exception) {
                    die("ERROR DATA RECOVERY FAILED");
