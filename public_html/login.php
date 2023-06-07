@@ -22,7 +22,7 @@
 
         <?php       
             
-            //Connexion à la base de données
+            //Database connection
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
@@ -30,7 +30,7 @@
                 die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATOR");
             }
         
-            //Récuperation des logins
+            //Recovering logins
             try {
                 $result = mysqli_query($id_bd, "SELECT * FROM `view_login`");
             
@@ -38,7 +38,7 @@
                die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR");
             }
         
-            //Placement des login et mdp dans le tableau credentials
+            //Placement of login and mdp in the credentials table
             $credentials = fetchResults($result);
         
             $login = $_POST["login"];

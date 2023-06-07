@@ -1,5 +1,5 @@
-# Précaution de Securité si jamais l'utilisateur placait tout de même son fichier config.php dans le public_html
-# Ceci interdit toute opération par un utilisateur sur internet sur ce fichier
+#Security precaution should the user place his config.php file in the public_html anyway
+#This prohibits any operation on this file by a user on the Internet
 <Files "config.php">
   Deny from all
 </Files>

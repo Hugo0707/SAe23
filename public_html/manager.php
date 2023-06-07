@@ -9,7 +9,7 @@
         echo '<script> window.location.href = "./login.php"; </script>';
     }
 
-    //Importation de la config pour la connexion à la bd
+    //Config import for database connection
     require_once("../config/config.php");
 ?>
 
@@ -35,7 +35,7 @@
                 echo '<script> window.location.href = "./connection.php"; </script>';
             }
             
-            //Connexion à la base de données
+            //Database connection
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
@@ -43,23 +43,64 @@
                 die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATOR");
             }
         
-            //Récuperation des mesures
+            //Recovery of measurements, buildings and rooms
             try {
                 $result_measures = mysqli_query($id_bd, "SELECT Type_sensor, Building, Room, Value, Date, Time FROM view_sensor_page WHERE Building = '" . $_SESSION['building'] . "';");
-                $result_buildings = mysqli_query($id_bd, "SELECT Name_Building AS Building FROM `building`");
-                $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor FROM `view_sensor_page`");
-                $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_sensor_page`");
+                $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor FROM `view_sensor_page` WHERE Building = '" . $_SESSION['building'] . "';");
+                $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_sensor_page` WHERE Building = '" . $_SESSION['building'] . "';");
             } 
             catch(Exception) {
                die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR : ");
             }
             
-            //Placement des valeurs dans le tableau measures
+            //Placing values in the measures table
             $measures = fetchResults($result_measures);
-            $buildings = fetchResults($result_buildings);
             $sensors = fetchResults($result_sensors);
             $rooms = fetchResults($result_rooms);
         ?>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var advancedOptions = document.getElementById('advanced-options');
+                var optionsContainer = document.getElementById('options-container');
+                var dateInput = document.getElementById('date_input');
+
+                //Retrieves the current "display" style of the dateInput field
+                var dateInputDisplayStyle = getComputedStyle(dateInput).display; 
+
+                advancedOptions.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    optionsContainer.style.display = optionsContainer.style.display === 'none' ? 'block' : 'none';
+
+                    //Checks whether the dateInput field is hidden or displayed according to its "display" style
+                    if (getComputedStyle(dateInput).display === 'none') {
+                        dateInput.style.display = dateInputDisplayStyle; //Restores the previous "display" style
+                    } else {
+                        dateInputDisplayStyle = getComputedStyle(dateInput).display; //Saves the new "display" style
+                        dateInput.style.display = 'none';
+                    }
+                });
+
+                var startTimeInput = document.getElementById('start_time');
+                var endTimeInput = document.getElementById('end_time');
+
+                var Form = document.getElementById('filter-form');
+
+                Form.addEventListener('submit', function(event) {
+                  var startTime = startTimeInput.value;
+                  var endTime = endTimeInput.value;
+                
+                  if (startTime >= endTime) {
+                    event.preventDefault(); //Prevents form from being sent
+                    alert('L\'heure de début doit être inférieure à l\'heure de fin !');
+                  }
+                });
+
+        
+            });
+
+        </script>
 
 <section>
 
@@ -67,29 +108,25 @@
 
     <?php
 
+        //Empty the dateInput field if start_date or end_date is filled in
+        if (!empty($_GET['start_date']) || !empty($_GET['end_date'])) {
+            $_GET['Date'] = ''; //Empty the Date field in GET parameters
+        }
+
         if (!empty($measures)) {
             
             echo "
-                <!-- Tableau pour afficher les valeurs recuperées depuis la base de données dans un tableau en HTML -->
+                <!-- Table to display values retrieved from the database in an HTML table -->
 
-                <form action='' method='GET'>
-                    <!-- Formulaire permettant de recueillir les filtres choisis par l'utilisateur -->
-                    <select name='Building'>
-                        
-                        <option value='' selected></option>";
-
-                    for ($i=0; $i <count($sensors) ; $i++) { 
-                        echo "<option value='" . $buildings[$i]['Building'] . "'>" . $buildings[$i]['Building'] . "</option>";
-                    }
-
-              echo "</select>
+                <form action='' id='filter-form' method='GET'>
+                    <!-- Form for collecting user-selected filters -->
             
                     <select name='Type_sensor'>
                         <option value='' selected></option>";
                         
-                        for ($i=0; $i <count($sensors) ; $i++) { 
-                            echo "<option value='" . $sensors[$i]['Type_sensor'] . "'>" . $sensors[$i]['Type_sensor'] . "</option>";
-                        }
+                    for ($i=0; $i <count($sensors) ; $i++) { 
+                        echo "<option value='" . $sensors[$i]['Type_sensor'] . "'>" . $sensors[$i]['Type_sensor'] . "</option>";
+                    }
 
               echo "</select>
                 
@@ -104,8 +141,25 @@
                     
               echo "</select>
                     <input type='date' name='Date' id='date_input'>
-            
+                    
+                    <a href='#' id='advanced-options'> Options avancées </a>
+                    <div id='options-container' style='display: none;'>
+                        <label for='start_time'>Heure de début :</label>
+                        <input type='time' name='start_time' id='start_time'>
+
+                        <label for='end_time'>Heure de fin :</label>
+                        <input type='time' name='end_time' id='end_time'>
+
+                        <label for='start_date'>Date de début :</label>
+                        <input type='date' name='start_date' id='start_date'>
+
+                        <label for='end_date'>Date de fin :</label>
+                        <input type='date' name='end_date' id='end_date'>
+                    </div>
+
+                    <br>
                     <input type='submit' value='Appliquer'>
+                
             
                 </form>
 
@@ -121,53 +175,89 @@
                 </tr>
             ";
 
-            //Script qui permet de supprimer les choix par defaut vides du formulaire, et si un filtre sur la date est demandé il permet de la mettre au bon format
+            //Script that deletes the form's empty default choices, and if a date filter is requested, it sets the date to the correct format.
             foreach ($_GET as $key => $value) 
             {
                 if (isset($value) && $value ==="") 
                 {
                     unset($_GET[$key]);
                 }
-                if ($key == "Date" && !empty($value)) //Changement du format de la date Si une date est renseignée
+
+                if ($key == "Date" && !empty($value)) //Change date format If a date is entered
                 {
-                    $_GET[$key] = date("d/m/Y", strtotime($value));
+                    
                 }
+
+                switch ($key) {
+                    case 'Date':
+                        if (!empty($value)) {
+                            $_GET[$key] = date("d/m/Y", strtotime($value));
+                        }
+                        break;
+
+                    case 'start_date':
+                        if (!empty($value)) {
+                            $_GET[$key] = date("d/m/Y", strtotime($value));
+                        }
+                        break;
+
+                    case 'end_date':
+                        if (!empty($value)) {
+                            $_GET[$key] = date("d/m/Y", strtotime($value));
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
 
-            // Script pour afficher les valeurs récupérées dans leur colonnes respectives depuis le tableau measures
-            for ($i = 0; $i < count($measures); $i++) 
-            {
-
-                // Vérifie si il n'y a aucun filtre avec empty()
-                if (empty($_GET)) 
-                {
+            //Script to display the values retrieved from the measures table in their respective columns
+            //Loop to display measures taking new conditions into account
+            for ($i = 0; $i < count($measures); $i++) {
+                if (empty($_GET)) {
+                    //Display without filter if no field is selected
                     echo "<tr>";
                     for ($j = 0; $j < 6; $j++) {
                         echo "<td>" . $measures[$i][$j] . "</td>";
                     }
                     echo "</tr>";
-                }
-                else 
-                {
-                    // Script permettant de verifier si il les filtres renseignés et les mesures correspondent
+                } else {
+                    //Check all the filters
                     $match = true;
                     foreach ($_GET as $key => $value) {
-                        if ($value != $measures[$i][$key]) {
+                        if ($key === "start_time" || $key === "end_time" || $key === "start_date" || $key === "end_date") {
+                            continue; //Ignore time and date fields
+                        }
+                    
+                        if ($value !== $measures[$i][$key]) {
                             $match = false;
-                            break; 
+                            break;
                         }
                     }
                 
-                    // Si tous les filtres renseignés correspondent avec la mesure, la mesure est affichée
                     if ($match) {
-                        echo "<tr>";
-                        for ($j = 0; $j < 6; $j++) {
-                            echo "<td>" . $measures[$i][$j] . "</td>";
+                        //Filter measurements by selected times and dates
+                        $measure_time = strtotime($measures[$i]['Time']);
+                        //Convert date to Unix timestamp format for tests
+                        $measure_date = fr_strtotime($measures[$i]['Date']);
+
+                        if (
+                            (!isset($_GET['start_time']) || $measure_time >= strtotime($_GET['start_time'])) &&
+                            (!isset($_GET['end_time']) || $measure_time <= strtotime($_GET['end_time'])) &&
+                            (!isset($_GET['start_date']) || $measure_date >= fr_strtotime($_GET['start_date'])) &&
+                            (!isset($_GET['end_date']) || $measure_date <= fr_strtotime($_GET['end_date']))
+                        ) {
+                            echo "<tr>";
+                            for ($j = 0; $j < 6; $j++) {
+                                echo "<td>" . $measures[$i][$j] . "</td>";
+                            }
+                            echo "</tr>";
                         }
-                        echo "</tr>";
                     }
                 }
-            }
+            }    
         }
         else {
             echo "<center> <h2> Aucune valeur enregistrée pour le moment ! <h2> </center>";

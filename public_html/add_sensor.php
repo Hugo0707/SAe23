@@ -5,7 +5,7 @@
         header('Location: ./connection.php');
         exit();
     }
-    //Inclure le fichier config pour la connexion à la bd
+    //Include config file for db connection
     require_once("../config/config.php");
 ?>
 
@@ -32,7 +32,7 @@
 
     <?php 
     
-        //Connexion à la base de données
+        //Database connection
         try {
             $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
         } 
@@ -40,7 +40,7 @@
             die("DATABASE CONNECTION ERROR : <br>" . $e);
         }
     
-        //Récuperation des capteurs
+        //Sensor recovery
         try {
             $result = mysqli_query($id_bd, "SELECT ID_building, Name_building FROM `building`");
         
@@ -48,7 +48,7 @@
            die("ERROR DATA RECOVERY FAILED : <br>" . $e);
         }
 
-        //Placement des valeurs dans le tableau buildings
+        //Placing values in the buildings table
         $buildings = fetchResults($result);
 
         if (empty($buildings)) {
@@ -84,7 +84,7 @@
             
             <?php 
                 for ($i = 0; $i < count($buildings); $i++) {
-                    //$selected est la variable qui va determiner le choix de batiment precedent et l'appliquer
+                    //$selected is the variable that determines and applies the previous building choice
                     $selected = (isset($_GET['ID_building']) && (explode('-', $_GET['ID_building'])[1] === $buildings[$i]['Name_building'])) ? 'selected' : '';
                     echo "<option value='" . $buildings[$i]['ID_building'] . '-' . $buildings[$i]['Name_building'] . "' " . $selected . ">" . $buildings[$i]['Name_building'] . "</option>";
                 }
@@ -105,9 +105,9 @@
             
             echo "<form action='' method='POST'> <label for='Room_sensor'> Salle : </label> <select name='Room_sensor'>";
 
-                //Permet d'afficher uniquement les salles associées au batiment choisi dans le formulaire précedent 
+                //Displays only the rooms associated with the building selected in the previous form.
                 for ($i=0; $i < count($buildings); $i++) { 
-                    //La fonction explode nous permet la séparation de l'id du batiment ainsi que du nom avec le quel nous allons faire la condition
+                    //The explode function allows us to separate the building id and the name with which we'll make the condition.
                     if ($buildings[$i]['Name_building'] == explode('-', $_GET['ID_building'])[1]) {
 
                         foreach ($building_rooms[$buildings[$i]['Name_building']] as $key => $room) {
@@ -132,7 +132,7 @@
 
         if ((!empty($_POST['Type_sensor']) && !empty($_POST['Room_sensor']) && !empty($_POST['ID_building']))) { 
 
-            //Connexion à la base de données
+            //Database connection
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
@@ -140,7 +140,7 @@
                 die("DATABASE CONNECTION ERROR : <br>" . $e);
             }
 
-            //Recuperations des valeurs données par le gestionnaire 
+            //Recovering values given by the manager
             $Type_sensor = mysqli_real_escape_string($id_bd, $_POST['Type_sensor']);
             $Room_sensor = mysqli_real_escape_string($id_bd, $_POST['Room_sensor']);
             $ID_building = mysqli_real_escape_string($id_bd, $_POST['ID_building']);

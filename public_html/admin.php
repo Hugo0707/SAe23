@@ -8,7 +8,7 @@
     else {
         echo '<script> window.location.href = "./connection.php"; </script>';
     }
-    //Importation de la config pour la connexion à la bd
+    //Config import for database connection
     require_once("../config/config.php");
 ?>
 
@@ -49,7 +49,7 @@
                     echo '<script> window.location.href = "./connection.php"; </script>';
                 }
             
-                //Connexion à la base de données
+                //Database connection
                 try {
                     $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 } 
@@ -57,7 +57,7 @@
                     die("DATABASE CONNECTION ERROR : <br>" . $e);
                 }
             
-                //Récuperation des capteurs
+                //Sensor recovery
                 try {
                     $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor_admin`");
                 
@@ -65,7 +65,7 @@
                    die("ERROR DATA RECOVERY FAILED : <br>" . $e);
                 }
             
-                //Placement du resultat dans un tableau
+                //Placing the result in a table
                 $sensors = fetchResults($result);
 
                 if (!empty($sensors)) 
@@ -115,7 +115,7 @@
                  Email_Manager AS Email
                  FROM `building`";
             
-                //Récuperation des Batiments
+                //Buildings recovery
                 try {
                     $result = mysqli_query($id_bd, $query);
                 
@@ -123,7 +123,7 @@
                    die("ERROR DATA RECOVERY FAILED : . $e");
                 }
             
-                //Placement du resultat dans un tableau
+                //Placing the result in a table
                 $buildings = fetchResults($result);
 
                 if (!empty($buildings)) {

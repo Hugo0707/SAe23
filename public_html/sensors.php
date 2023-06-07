@@ -21,7 +21,7 @@
         /////////////////////////////////////////////////////////////////////////
 
 
-        //Connexion à la base de données
+        //Database connection
         try {
             $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
         } 
@@ -29,7 +29,7 @@
             die("DATABASE CONNECTION ERROR : PLEASE CONTACT THE ADMINISTRATOR");
         }
 
-        //Récuperation des mesures des batiments et des types de capteurs
+        //Collecting measurements from buildings and sensor types
         try {
             $result_measures = mysqli_query($id_bd, "SELECT * FROM `view_sensor_page`");
             $result_buildings = mysqli_query($id_bd, "SELECT Name_Building AS Building FROM `building`");
@@ -40,7 +40,7 @@
            die("ERROR DATA RECOVERY FAILED : PLEASE CONTACT THE ADMINISTRATOR");
         }
 
-        //Placement des valeurs dans leur tableau respectif
+        //Placing values in their respective tables
         $measures = fetchResults($result_measures);
         $buildings = fetchResults($result_buildings);
         $sensors = fetchResults($result_sensors);
@@ -60,14 +60,15 @@
                     if (!empty($measures)) {
                         
                         echo "
-                            <!-- Tableau pour afficher les valeurs recuperées depuis la base de données dans un tableau en HTML -->
+                            <!-- Table to display values retrieved from the database in an HTML table -->
 
                             <form action='' method='GET'>
-                                <!-- Formulaire permettant de recueillir les filtres choisis par l'utilisateur -->
+                                <!-- Form for collecting user-selected filters -->
                                 <select name='Building'>
                                     
                                     <option value='' selected></option>";
 
+                                //Displays only buildings in the measurements
                                 for ($i=0; $i <count($sensors) ; $i++) { 
                                     echo "<option value='" . $buildings[$i]['Building'] . "'>" . $buildings[$i]['Building'] . "</option>";
                                 }
@@ -111,24 +112,24 @@
                             </tr>
                         ";
 
-                        //Script qui permet de supprimer les choix par defaut vides du formulaire, et si un filtre sur la date est demandé il permet de la mettre au bon format
+                        //Script that deletes the form's empty default choices, and if a date filter is requested, it sets the date to the correct format (french format)
                         foreach ($_GET as $key => $value) 
                         {
                             if (isset($value) && $value ==="") 
                             {
                                 unset($_GET[$key]);
                             }
-                            if ($key == "Date" && !empty($value)) //Changement du format de la date Si une date est renseignée
+                            if ($key == "Date" && !empty($value)) //Change date format If a date is entered
                             {
                                 $_GET[$key] = date("d/m/Y", strtotime($value));
                             }
                         }
 
-                        // Script pour afficher les valeurs récupérées dans leur colonnes respectives depuis le tableau measures
+                        //Script to display the values retrieved in their respective columns from the measures table
                         for ($i = 0; $i < count($measures); $i++) 
                         {
 
-                            // Vérifie si il n'y a aucun filtre avec empty()
+                            //Checks if there are no filters with empty()
                             if (empty($_GET)) 
                             {
                                 echo "<tr>";
@@ -140,7 +141,7 @@
                             else 
                             {
 
-                                // Script permettant de verifier si il les filtres renseignés et les mesures correspondent
+                                //Script to check whether filters and measurements match
                                 $match = true;
                                 foreach ($_GET as $key => $value) {
                                     if ($value != $measures[$i][$key]) {
@@ -149,7 +150,7 @@
                                     }
                                 }
                             
-                                // Si tous les filtres renseignés correspondent avec la mesure, la mesure est affichée
+                                //If all the filters entered match the measurement, the measurement is displayed
                                 if ($match) {
                                     echo "<tr>";
                                     for ($j = 1; $j < 7; $j++) {

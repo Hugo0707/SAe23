@@ -19,13 +19,13 @@
     <title>Connection</title>
 </head>
 <body>
-
+    
     <div id="js-message" style="display: block;">
         <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
     </div>
     
     <form action="./login.php" method="post">
-
+        <!-- Connection Form -->
         <label for="login"> Login : </label>
         <input type="text" id="login" name="login">
         <br><br>
@@ -42,6 +42,7 @@
 </body>
 </html>
 
+<!-- JS warning -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('js-message').style.display = 'none';
