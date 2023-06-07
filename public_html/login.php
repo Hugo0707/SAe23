@@ -27,7 +27,7 @@
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
             catch(Exception) {
-                die("DATABASE CONNECTION ERROR");
+                die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATOR");
             }
         
             //Récuperation des logins
@@ -35,19 +35,17 @@
                 $result = mysqli_query($id_bd, "SELECT * FROM `view_login`");
             
             } catch (Exception) {
-               die("ERROR DATA RECOVERY FAILED");
+               die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR");
             }
         
             //Placement des login et mdp dans le tableau credentials
-            for ($i=0; $i < mysqli_num_rows($result); $i++) { 
-                $credentials[$i] = mysqli_fetch_array($result);
-            }
+            $credentials = fetchResults($result);
         
             $login = $_POST["login"];
             $passwd = $_POST["passwd"];
         
             $known = false;
-            for ($i=0; $i < count($_POST) ; $i++) { 
+            for ($i=0; $i < count($credentials) ; $i++) { 
                 if (password_verify($passwd, $credentials[$i][1]) && $login == $credentials[$i][0] ) {
                     $known=true;
                     $_SESSION["login"] = $credentials[$i][0];
@@ -60,6 +58,7 @@
                         echo '<script> window.location.href = "./admin.php"; </script>';
                     }
                     elseif ((isset($_SESSION["login"])) && ($_SESSION["grade"] === "Manager")) {
+                        $_SESSION['building'] = $credentials[$i]['Building'];
                         echo '<script> window.location.href = "./manager.php"; </script>';
                     }
                      

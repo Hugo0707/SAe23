@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    if (!($_SESSION["grade"] === "Admin") || empty($_POST))
+    if ((!($_SESSION["grade"] === "Admin") || empty($_POST)) )
     {
         header('Location: ./connection.php');
         exit();
@@ -16,7 +16,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Suppression du Capteur</title>
+        <title>Suppression du Batiment</title>
     </head>
 
     <body>
@@ -41,17 +41,17 @@
             catch(Exception $e) {
                 die("DATABASE CONNECTION ERROR : <br>" . $e);
             }
-            //Enregistrement de l'identifiant du capteur a surpprimer dans cette variable
+            //Enregistrement de l'identifiant du Batiment a surpprimer dans cette variable
             //Verification de l'entrée de l'utilisateur avec la fonction mysli_real_escape_string permettant de prévenir les injections sql
-            //Cette variable sera envoyée dans le prochain formulaire post afin de se souvenir de quel capteur il faut supprimer si le choix est oui
-            $id_sensor = mysqli_real_escape_string($id_bd, array_key_first($_POST));
+            //Cette variable sera envoyée dans le prochain formulaire post afin de se souvenir de quel Batiment il faut supprimer si le choix est oui
+            $id_building = mysqli_real_escape_string($id_bd, array_key_first($_POST));
             
         ?>
 
         <form method='post' action="">
 
             <center> 
-                <h2> Voulez vous vraiment supprimer ce capteur ? Cette action sera irréversible ! <br> Toutes les mesures associées a ce capteur seront supprimées également ! </h2>
+                <h2> Voulez vous vraiment supprimer ce Batiment ? Cette action sera irréversible ! <br> En supprimant ce batimant vous supprimez tous les Capteurs et mesures associées ! </h2>
             </center>
 
             <label for="oui">Oui</label>
@@ -60,7 +60,7 @@
             <label for="non">Non</label>
             <input type="radio" name="confirm" value="no" id="non">
             
-            <input type="hidden" name="delete" value="<?php echo $id_sensor;?>">
+            <input type="hidden" name="delete" value="<?php echo $id_building;?>">
 
             <input type="submit" value="Valider">
         </form>
@@ -73,18 +73,17 @@
                 
                 if ($_POST['confirm'] === "yes") {
 
-                    //Enregistrement de la requete qui permettra de supprimer ce capteur de la base de données dans la variable $query
-                    $query = "DELETE FROM sensor WHERE ID_sensor = " . $_POST['delete']; 
-                
+                    //Enregistrement de la requete qui permettra de supprimer ce Batiment de la base de données dans la variable $query
+                    $query = "DELETE FROM building WHERE ID_building = " . $_POST['delete']; 
+
                     try {
                         mysqli_query($id_bd, $query);
                     } catch (Exception $e) {
-                        echo " ERREUR :  " . $e;
-                        die("ERREUR REQUETE SQL CAPTEUR NON SUPPRIMÉ : <br>" . $e);
+                        die("ERREUR REQUETE SQL Batiment NON SUPPRIMÉ : <br>" . $e );
                     }
 
                     echo '
-                        <center> <h1> CAPTEUR SUPPRIMÉ AVEC SUCCES </h1> </center>
+                        <center> <h1> Batiment SUPPRIMÉ AVEC SUCCES </h1> </center>
                         <script>
                             setTimeout(function() {
                                 window.location.href = "./admin.php";
