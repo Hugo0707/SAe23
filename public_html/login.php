@@ -2,7 +2,7 @@
     session_start();
     if (empty($_POST["login"]) || empty($_POST["passwd"])) 
     {
-        header('Location: ../connection.php');
+        header('Location: ./connection.php');
         exit();
     }
     require_once("../config/config.php");
