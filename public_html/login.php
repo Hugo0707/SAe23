@@ -17,11 +17,11 @@
     <title>Connexion en cours...</title>
 </head>
 <body>
-
+    <div id="js-message" style="display: block;">
+        <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
+    </div>
     <section>
-
         <?php       
-            
             //Connexion à la base de données
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
@@ -29,7 +29,7 @@
             catch(Exception) {
                 die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATOR");
             }
-        
+
             //Récuperation des logins
             try {
                 $result = mysqli_query($id_bd, "SELECT * FROM `view_login`");
@@ -75,16 +75,9 @@
             }
         
         ?>
-
     </section>
-
-
-    <div id="js-message" style="display: block;">
-        <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
-    </div>
 </body>
 </html>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('js-message').style.display = 'none';
