@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS for the page-->
-    <link rel="stylesheet" href="./Style/style.css">
-    <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
+    <link rel="stylesheet" href="./public_html/Style/style.css">
+    <link rel="icon" href="./public_html/Images/IOT_Logo.png" type="image/gif">
     <title>Home</title>
 </head>
 <body>
@@ -15,12 +15,11 @@
             <span class="title">SAE 23</span>
             <ul class="pages">
                 <li><a class="effect-underline" href="Index.html">Home</a></li>
-                <li><a class="effect-underline" href="./Pages/Sensors.php">Sensors</a></li>
-                <li><a class="effect-underline" href="./Pages/Contact.html">Contact</a></li>
-                <li><a class="effect-underline" href="./Pages/Legal_Information.html">Legal Notice</a></li>
+                <li><a class="effect-underline" href="./public_html/sensors.php">Sensors</a></li>
+                <li><a class="effect-underline" href="./public_html/contact.html">Contact</a></li>
+                <li><a class="effect-underline" href="./public_html/legal_Information.html">Legal Notice</a></li>
             </ul>
-            <span class="main_btn"><a href="./Pages/Account.php">Log In</a></span>
-            <img class="burger" src="MenuBurger.png" alt="menu burger">
+            <span class="main_btn"><a href="./public_html/connection.php">Log In</a></span>
         </nav> 
     </header>
     <section class="background">
@@ -49,15 +48,15 @@
                     </li>
                 </ul>
             </li>
-            <li><img src="./Images/IOT.png" alt="IOT Diagram"></li>
+            <li><img src="./public_html/Images/IOT.png" alt="IOT Diagram"></li>
         </ul>
     </section>
     <footer>
         <ul>
             <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
             <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
-            <li><a href="./NotAvailable/UnderConstruction.html" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
-            <li><a href="./NotAvailable/UnderConstruction.html" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
+            <li><a href="./NotAvailable/UnderConstruction.html" target="_blank"><img class="img_footer" src="./public_html/Images/HTML5.png" alt="HTML 5 Validation"></a></li>
+            <li><a href="./NotAvailable/UnderConstruction.html" target="_blank"><img class="img_footer" src="./public_html/Images/CSS3.png" alt="CSS 3 Validation"></a></li>
         </ul>
     </footer>
 </body>

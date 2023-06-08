@@ -14,11 +14,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS for the page-->
+    <link rel="stylesheet" href="./Style/style.css">
+    <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
     <title>Connexion en cours...</title>
 </head>
 <body>
+<section class="background">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="circle four"></div>
+        <div class="circle five"></div>
+        <div class="circle sixe"></div>
+    </section>
 
-    <section>
+    <section class="main">
 
         <?php       
             
@@ -78,7 +89,14 @@
 
     </section>
 
-
+    <footer>
+        <ul>
+            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+            <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
+            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
+            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
+        </ul>
+    </footer>
     <div id="js-message" style="display: block;">
         <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
     </div>

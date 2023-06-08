@@ -19,9 +19,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS for the page-->
+        <link rel="stylesheet" href="./Style/style.css">
+        <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
         <title>Admin Page</title>
     </head>
-
     <div id="js-message" style="display: block;">
         <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
     </div>
@@ -30,9 +32,29 @@
             document.getElementById('js-message').style.display = 'none';
         });
     </script>
-
     <body>
-
+    <header>
+        <nav class="nav">
+            <span class="title">SAE 23</span>
+            <ul class="pages">
+                <li><a class="effect-underline" href="../Index.php">Home</a></li>
+                <li><a class="effect-underline" href="./sensors.php">Sensors</a></li>
+                <li><a class="effect-underline" href="./contact.php">Contact</a></li>
+                <li><a class="effect-underline" href="./legal_Information.php">Legal Notice</a></li>
+            </ul>
+            <span class="main_btn"><a href="./connection.php">Admin</a></span>
+        </nav> 
+    </header>
+    <section class="background">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="circle four"></div>
+        <div class="circle five"></div>
+        <div class="circle sixe"></div>
+    </section>
+        <section class="main">
+            <div>
         <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <br>
             <input type="submit" name="logout" value="Logout">
@@ -157,7 +179,15 @@
         </table>
 
         <a href="./add_building.php"> Ajouter un Batiment </a>
-
-
+        </div>
+        </section>
+        <footer>
+        <ul>
+            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+            <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
+            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
+            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
+        </ul>
+    </footer>
     </body>
 </html>
