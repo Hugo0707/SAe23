@@ -1,25 +1,25 @@
 <?php 
     /*  
-        Le dossier config DOIT ABSOLUMENT etre placé dans le repertoire ou se situe le dossier public_html
-        PAS A L'INTERIEUR DU REPERTOIRE public_html
+        The config folder MUST ABSOLUTELY be placed in the directory where the public_html folder is located.
+        NOT INSIDE THE public_html DIRECTORY
           ________________________________________
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
         //----------------------------------------\\
-        || ! ATTENTION NE PAS METTRE CE FICHIER ! ||
-        || ! DANS VOTRE REPERTOIRE PUBLIC HTML  ! || 
-        || ! OU CELUI CI POURRA ETRE TELECHARGÉ ! || 
-        || ! PAR N'IMPORTE QUEL UTILISATEUR     ! ||
+        || ! WARNING: DO NOT PUT THIS FILE       !||
+        || ! IN YOUR PUBLIC HTML DIRECTORY       !|| 
+        || ! WHERE IT CAN BE DOWNLOADED          !|| 
+        || ! BY ANY USER                         !||
         ||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!||
         \\________________________________________//
     */
 
-    //Identifiants BD
+    //DB identifiers
     $dbHost = "localhost";
     $dbUser = "admin";    
-    $dbPass = 'sae23';          //Entrer mdp de l'utilisateur, si aucun mdp pour l'utilisateur laisser vide
-    $dbName = "sae23";      //Nom de la base de données à utiliser
+    $dbPass = 'sae23';       //Enter user password, if no password for user leave blank
+    $dbName = "sae23";      //Name of the database to be used
 
-    //Salles Présentes dans les Batiments de l'iut
+    //Rooms in the iut buildings
     $building_rooms = [
 
       'Batiment R&T' =>  [ 'E001', 'E002', 'E003', 'E004', 'E005', 'E006', 'E007',
@@ -28,12 +28,16 @@
 
       'Batiment INFO' => [ 'B001', 'B002', 'B003', 'B101', 'B102', 'B103', 'B104', 'B105', 'B106', 'B107', 'B108', 'B109', 'B110', 'B111',
        'B112', 'B113', 'B201', 'B202', 'B203', 'B212','B217','B219'
-      ]
+      ],
+
+      'Batiment C' => [ 'C004', 'C006'],
+      
+      'Batiment A' => ['A007']
       
     ];
 
 
-    //Fonction permettant de rendre la recupération des données dans des tableaux moins répetitive 
+    //Function to make data retrieval in tables less repetitive
     function fetchResults($result) {
       $rows = array();
   
@@ -44,6 +48,14 @@
       return $rows;
     }
   
+    //Function to use strtotime with French date format
+    function fr_strtotime($date){
+
+      $date = explode('/', $date);
+      $date = strtotime($date[2] . '-' . $date[1] . '-' . $date[0]);
+
+      return $date;
+    }
     
 
 

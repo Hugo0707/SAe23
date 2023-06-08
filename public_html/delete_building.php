@@ -5,7 +5,7 @@
         header('Location: ./connection.php');
         exit();
     }
-    //Inclure le fichier config pour la connexion à la bd
+    //Include config file for db connection
     require_once("../config/config.php");
 ?>
 
@@ -34,16 +34,16 @@
 
         <?php 
 
-            //Connexion à la base de données
+            //Database connection
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
             catch(Exception $e) {
                 die("DATABASE CONNECTION ERROR : <br>" . $e);
             }
-            //Enregistrement de l'identifiant du Batiment a surpprimer dans cette variable
-            //Verification de l'entrée de l'utilisateur avec la fonction mysli_real_escape_string permettant de prévenir les injections sql
-            //Cette variable sera envoyée dans le prochain formulaire post afin de se souvenir de quel Batiment il faut supprimer si le choix est oui
+            //Saving the identifier of the building to be overwritten in this variable  
+            //Verify user input with mysli_real_escape_string function to prevent sql injections
+            //This variable will be sent in the next form post to remember which building to delete if the choice is yes
             $id_building = mysqli_real_escape_string($id_bd, array_key_first($_POST));
             
         ?>
@@ -73,7 +73,7 @@
                 
                 if ($_POST['confirm'] === "yes") {
 
-                    //Enregistrement de la requete qui permettra de supprimer ce Batiment de la base de données dans la variable $query
+                    //Record the query that will delete this building from the database in the variable $query
                     $query = "DELETE FROM building WHERE ID_building = " . $_POST['delete']; 
 
                     try {

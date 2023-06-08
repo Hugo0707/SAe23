@@ -5,7 +5,7 @@
         header('Location: ./connection.php');
         exit();
     }
-    //Inclure le fichier config pour la connexion à la bd
+    //Include config file for db connection
     require_once("../config/config.php");
 ?>
 
@@ -20,7 +20,7 @@
 <body>
 
     <?php 
-        //Connexion à la base de données
+        //Database connection
         try {
             $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
         } 
@@ -28,7 +28,7 @@
             die("DATABASE CONNECTION ERROR : <br>" . $e);
         }
     
-        //Récuperation des capteurs
+        //Sensor recovery
         try {
             $result = mysqli_query($id_bd, "SELECT ID_building, Name_building FROM `building`");
         
@@ -36,7 +36,7 @@
            die("ERROR DATA RECOVERY FAILED : <br>" . $e);
         }
 
-        //Placement des valeurs dans le tableau buildings
+        //Placing values in the buildings table
         $buildings = fetchResults($result);
     ?>
     
@@ -48,7 +48,7 @@
         <label for="Name_building"> Nom du Batiment :  </label>
         <select name="Name_building" >
             <?php 
-                //Permet de proposer que les batiments qui n'ont pas dèjà été ajoutés
+                //Suggests only buildings that have not already been added
                 $no_option = true;
                 foreach ($building_rooms as $key => $array) {
                     
@@ -67,7 +67,7 @@
                             $no_option = false;
                         }
                     }else {
-                        //Permet d'afficher tous les batiments disponibles si aucun batiment n'a été recuperé depuis la bd
+                        //Displays all available buildings if no building has been retrieved from the database.
                         echo "<option value='" . $key . "'>" . $key . "</option>";
                         $no_option = false;
                     }
@@ -75,7 +75,7 @@
                 }
                 echo"</select>";
                 if ($no_option) {
-                    //Redirection vers la page admin
+                    //Redirect to admin page
                     echo '<center> <h1> Vous avez dejà ajouté tous les batiments disponnibles ! </h1> </center>
                     <script>
                         setTimeout(function() {
@@ -106,26 +106,26 @@
          
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && (!empty($_POST['Name_building']) && !empty($_POST['Login_manager']) && !empty($_POST['Password_manager']))) { 
 
-            //Recuperations des valeurs données par le gestionnaire 
+            //Recovering values given by the manager
             $Name_building = mysqli_real_escape_string($id_bd, $_POST['Name_building']);
             $Login_manager = mysqli_real_escape_string($id_bd, $_POST['Login_manager']);
             $Email_manager = mysqli_real_escape_string($id_bd, $_POST['Email_manager']);
             
-            //Chiffrement du mdp en bcrypt
+            //bcrypt password encryption
             $Password_manager = password_hash($_POST['Password_manager'], PASSWORD_DEFAULT);
 
-            //Requete permettant d'inserer les données
+            //Data insertion query
             $query = "INSERT INTO building (Name_building, Login_manager, Email_manager, Password_manager) 
                 VALUES ( '$Name_building', '$Login_manager', '$Email_manager', '" . $Password_manager . "')";
 
-            //Execution de la requete
+            //Execution of the query
             try {
                 mysqli_query($id_bd, $query);
             } catch (Exception $e) {
                 die("ERREUR REQUETE SQL LE BATIMENT N'A PAS ETE AJOUTÉ ! : <br>" . $e);
             }
             
-            //Redirection vers la page admin
+            //Redirect to admin page
             echo '<center> <h4> BATIMENT AJOUTÉ AVEC SUCCES ! </h4> </center>
                 <script>
                     setTimeout(function() {
