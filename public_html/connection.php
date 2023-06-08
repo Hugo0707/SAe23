@@ -33,6 +33,7 @@
                 <li><a class="effect-underline" href="./sensors.php">Sensors</a></li>
                 <li><a class="effect-underline" href="./contact.php">Contact</a></li>
                 <li><a class="effect-underline" href="./legal_Information.php">Legal Notice</a></li>
+                <li><a class="effect-underline" href="./ourwork.php">Our work</a></li>
             </ul>
             <?php 
             if (isset($_SESSION['grade'])) {

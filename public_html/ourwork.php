@@ -10,7 +10,7 @@
     <!--CSS for the page-->
     <link rel="stylesheet" href="./Style/style.css">
     <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-    <title>Contact</title>
+    <title>Legal Notice</title>
 </head>
 <body>
     <header>
@@ -36,7 +36,7 @@
                 }
             
             ?>
-        </nav> 
+        </nav>  
     </header>
     <section class="background">
         <div class="circle one"></div>
@@ -46,19 +46,30 @@
         <div class="circle five"></div>
         <div class="circle sixe"></div>
     </section>
-    <section class="mainContact">
-        <div>
-            <h1 class="TitleContact">Contact form</h1>
-            <form class="ContactForm" name="ContactForm" action="mailto:baptiste.alteirac@gmail.com" method="post">
-                <label for="name">Your name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Your email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Your message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+    <section class="main">
+                <ul class="notice">
+                    <li>
+                        <h1>LEGAL NOTICE: </h1>
+                    </li>
+                    <li>
+                        <p>
+                            In accordance with the provisions of Articles 6-III and 19 of Law No. 2004-575 of June 21, 2004, known as the L.C.E.N. (Confidence in the Digital Economy Law), we hereby inform visitors to the website: iot.ybgn.fr of the following data:
+                        </p>
+                        <h2>
+                            1. Legal Information:
+                        </h2>
+                        <p>
+                            Owner's name: Yassir Boulouiha Gnaoui
+                            Owner's address: Allée Maurice Sarraut 31000 - Toulouse
+                        </p>
+                            
+                        <p>
+                            Website Developer: Boulouiha Gnaoui Yassir
+                            Publication Manager: Boulouiha Gnaoui Yassir
+                            Contact the Publication Manager: yassir.boulouiha.iut@gmail.com
+                        </p>
+                    </li>
+                </ul>
     </section>
     <footer>
         <ul>
