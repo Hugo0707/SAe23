@@ -37,12 +37,24 @@
         <nav class="nav">
             <span class="title">SAE 23</span>
             <ul class="pages">
-                <li><a class="effect-underline" href="../Index.php">Home</a></li>
+                <li><a class="effect-underline" href="./Index.php">Home</a></li>
                 <li><a class="effect-underline" href="./sensors.php">Sensors</a></li>
                 <li><a class="effect-underline" href="./contact.php">Contact</a></li>
                 <li><a class="effect-underline" href="./legal_Information.php">Legal Notice</a></li>
             </ul>
-            <span class="main_btn"><a href="./connection.php">Admin</a></span>
+            <?php 
+            if (isset($_SESSION['grade'])) {
+                if ($_SESSION['grade'] === 'Admin' ) {
+                    echo "<span class='main_btn'><a href='./connection.php'>Admin</a></span>";
+                }
+                elseif ($_SESSION['grade'] === 'Manager') {
+                    echo "<span class='main_btn'><a href='./connection.php'>Manager</a></span>";
+                }
+            }
+            else {
+                echo "<span class='main_btn'><a href='./connection.php'>Log In</a></span>";
+            }
+        ?>
         </nav> 
     </header>
     <section class="background">
@@ -55,10 +67,9 @@
     </section>
         <section class="main">
             <div>
-        <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <br>
-            <input type="submit" name="logout" value="Logout">
-        </form>
+            <form id="Logout" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <input type="submit" name="logout" value="Logout">
+            </form>
 
 
         <h3> Capteurs Crées : </h3>
