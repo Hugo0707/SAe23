@@ -15,10 +15,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS for the page-->
+        <link rel="stylesheet" href="./Style/style.css">
+        <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
     <title>Ajout de Capteur</title>
 </head>
 <body>
-
+    <section class="background">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="circle four"></div>
+        <div class="circle five"></div>
+        <div class="circle sixe"></div>
+    </section>
+    <section class="AD">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('js-message').style.display = 'none';
@@ -172,6 +183,6 @@
        
     
     ?>
-
+    </section>
 </body>
 </html>

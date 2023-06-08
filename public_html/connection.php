@@ -57,7 +57,7 @@
       <div class="circle five"></div>
       <div class="circle sixe"></div>
     </section>
-    <section class="main">
+    <section class="mainAccount">
     <div>
         <h1 class="TitleAccount">Log In</h1>
         <form name="LogIn" action="./login.php" method="post">
@@ -65,7 +65,7 @@
             <input type="text" id="login" name="login" required>
             <label for="passwd">Your password:</label>
             <input type="password" id="password" name="passwd" required>
-            <input type="submit" value="Send">
+            <input type="submit" value="Submit">
         </form>
     </div>
     </section>

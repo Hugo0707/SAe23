@@ -26,13 +26,10 @@ body {
 }
 
 .main {
-    margin: 90px 70px 30px 70px;
-}
-.main ul {
     background-color: rgba(240, 240, 240, 0.5);
     backdrop-filter: blur(1px);
     border-radius: 20px;
-    margin: 20px 30px 20px 30px;
+    margin: 90px 70px 30px 70px;
 }
 
 /* ================================================================= */
@@ -104,7 +101,7 @@ body {
 /* ================================================================= */
 
 header {
-    color: aliceblue;
+    color: white;
     background-color: rgb(11, 41, 142);
     position: fixed;
     top: 0;
@@ -169,7 +166,7 @@ a.effect-underline:hover:after {
 
 .main_btn {
     background-color: aliceblue;
-    color: black;
+    color: rgb(4, 47, 37);
     padding: 5px 10px;
     border: none;
     border-radius: 20px;
@@ -191,14 +188,6 @@ a.effect-underline:hover:after {
     color: rgb(4, 47, 37);
 }
 
-/* Menu Burger */
-
-nav img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    display: none;
-}
 
 /* ================================================================= */
                             /* Footer */
@@ -263,11 +252,11 @@ footer ul li a {
                             /* Form Contact */
 /* ================================================================= */
 
-.main div {
+.mainContact div {
     background-color: rgba(240, 240, 240, 0.5);
     backdrop-filter: blur(1px);
     border-radius: 20px;
-    margin: 20px 30px 20px 30px;
+    margin: 100px 30px 40px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -288,15 +277,15 @@ footer ul li a {
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
+.ContactForm input[type="text"],
+.ContactForm input[type="email"],
+.ContactForm textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-input[type="submit"] {
+.ContactForm input[type="submit"] {
     width: 100%;
     height: 45px;
     border: none;
@@ -313,11 +302,11 @@ input[type="submit"] {
     font-size: 17px;
 }
 
-input[type="submit"]:hover {
+.ContactForm input[type="submit"]:hover {
     scale: 1.025;
 }
 
-input[type="submit"]:active {
+.ContactForm input[type="submit"]:active {
     scale: 0.99;
 }
 
@@ -352,34 +341,34 @@ input[type="submit"]:active {
 /* ================================================================= */
 
 
-.main div {
+.mainAccount div {
     background-color: rgba(240, 240, 240, 0.5);
     backdrop-filter: blur(1px);
     border-radius: 20px;
-    margin: 20px 30px 20px 30px;
+    margin: 100px 30px 40px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.TitleAccount {
+.mainAccount .TitleAccount {
     color: rgb(94, 185, 218);
     margin-top: 70px;
     margin-bottom: 50px;
     font-size: 40px;
 }
 
-form {
+.mainAccount form {
     width: 400px;
 }
 
-input[type="text"],
-input[type="password"] {
+.mainAccount input[type="text"],
+.mainAccount input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-input[type="submit"] {
+.mainAccount input[type="submit"] {
     width: 100%;
     height: 45px;
     border: none;
@@ -396,77 +385,345 @@ input[type="submit"] {
     font-size: 17px;
 }
 
-input[type="submit"]:hover {
+.mainAccount input[type="submit"]:hover {
     scale: 1.025;
 }
 
-input[type="submit"]:active {
+.mainAccount input[type="submit"]:active {
     scale: 0.99;
 }
 
 /* ================================================================= */
                             /* Sensors */
 /* ================================================================= */
-
-.sensors {
-    padding-top: 50px;
+.mainSensors {
+    background-color: rgba(240, 240, 240, 0.5);
+    backdrop-filter: blur(1px);
+    border-radius: 20px;
+    margin: 100px 30px 40px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.sensors h1 {
+.mainSensors h1 {
+    font-size: 80px;
     color: rgb(94, 185, 218);
-    font-size: 40px;
+    margin-top: 20px;
 }
-.sensors ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.mainSensors h2 {
+    font-size: 20px;
+    color: rgb(94, 185, 218);
+    margin: 10px;
 }
-.sensors form {
-    width: 100%;
-}
-.sensors select {
-    padding: 8px;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-.sensors input[type="date"] {
-    padding: 6.5px;
-}
-.sensors input[type="submit"] {
-    width: 80%;
-    margin-left: 40px;
+.mainSensors input[type="submit"] {
+    width: 40%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 100px;
+    margin-top: 30px;
+    background-color: rgb(94, 185, 218);
+    color: rgb(245, 241, 241);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    font-weight: bold;
+    font-size: 17px;
 }
 
-table {
-    width: 100%; 
+.mainSensors input[type="submit"]:hover {
+    scale: 1.025;
+}
+
+.mainSensors input[type="submit"]:active {
+    scale: 0.99;
+}
+.mainSensors table {
+    width: 90%;
+    margin: 10px;
+    border-radius: 5px;
     border-collapse: separate; 
     border-spacing: 0;
     border: 1px solid black;
     margin-bottom: 50px;
-  }
+    background-color: white;
+}
   
-  thead {
+.mainSensors thead {
     background-color: #f2f2f2; 
     font-weight: bold; 
-  }
+}
   
-  th {
+.mainSensors th {
     padding: 20px; 
     text-align: center; 
     border-bottom: 1px solid #ddd; 
-  }
+}
   
-  td {
+.mainSensors td {
     padding: 20px; 
     border-bottom: 1px solid #ddd; 
     text-align: center;
-  }
+}
   
-  tr:nth-child(even) {
+.mainSensors tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
+}
+/* ================================================================= */
+                            /* Manager */
+/* ================================================================= */
+.mainManager{
+    background-color: rgba(240, 240, 240, 0.5);
+    backdrop-filter: blur(1px);
+    border-radius: 20px;
+    margin: 100px 30px 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mainManager h1 {
+    font-size: 80px;
+    color: rgb(94, 185, 218);
+    margin-top: 20px;
+}
+.mainManager h2 {
+    font-size: 20px;
+    color: rgb(94, 185, 218);
+    margin: 10px;
+}
+.mainManager form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mainManager form input[type="submit"] {
+    margin-bottom: 20px;
+    width: 20%;
+}
+.mainManager input[type="submit"] {
+    width: 40%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 100px;
+    margin-top: 30px;
+    background-color: rgb(94, 185, 218);
+    color: rgb(245, 241, 241);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.mainManager input[type="submit"]:hover {
+    scale: 1.025;
+}
+
+.mainManager input[type="submit"]:active {
+    scale: 0.99;
+}
+
+.mainManager table {
+    width: 90%;
+    margin: 10px;
+    border-radius: 5px;
+    border-collapse: separate; 
+    border-spacing: 0;
+    border: 1px solid black;
+    margin-bottom: 50px;
+    background-color: white;
+}
+  
+.mainManager thead {
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+}
+  
+.mainManager th {
+    padding: 20px; 
+    text-align: center; 
+    border-bottom: 1px solid #ddd; 
+}
+  
+.mainManager td {
+    padding: 20px; 
+    border-bottom: 1px solid #ddd; 
+    text-align: center;
+}
+  
+.mainManager tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.info {
+    display: none;
+}
+#advanced-options {
+    margin: 10px;
+    color: rgb(94, 185, 218);
+}
+/* ================================================================= */
+                            /* Admin */
+/* ================================================================= */
+.mainAdmin{
+    background-color: rgba(240, 240, 240, 0.5);
+    backdrop-filter: blur(1px);
+    border-radius: 20px;
+    margin: 100px 30px 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mainAdmin h2 {
+    font-size: 60px;
+    color: rgb(94, 185, 218);
+    margin: 40px;
+}
+.mainAdmin table {
+    width: 90%;
+    margin: 10px;
+    border-radius: 5px;
+    border-collapse: separate; 
+    border-spacing: 0;
+    border: 1px solid black;
+    margin-bottom: 50px;
+    background-color: white;
+}
+  
+.mainAdmin thead {
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+}
+  
+.mainAdmin th {
+    padding: 20px; 
+    text-align: center; 
+    border-bottom: 1px solid #ddd; 
+}
+  
+.mainAdmin td {
+    padding: 20px; 
+    border-bottom: 1px solid #ddd; 
+    text-align: center;
+}
+  
+.mainAdmin tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.mainAdmin form input[type="submit"] {
+    margin-bottom: 20px;
+    width: 20%;
+}
+.mainAdmin input[type="submit"] {
+    width: 60%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(223, 22, 22);
+    color: rgb(245, 241, 241);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.mainAdmin input[type="submit"]:hover {
+    scale: 1.025;
+}
+
+.mainAdmin input[type="submit"]:active {
+    scale: 0.99;
+}
+.mainAdmin form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mainAdmin #Logout input[type="submit"] {
+    margin: 50px;
+    width: 20%;
+    background-color: rgb(94, 185, 218);
+}
+.add {
+    color: rgb(94, 185, 218);
+    border: rgb(94, 185, 218) solid;
+}
+.add:hover {
+    color: rgb(11, 41, 142);
+    border: rgb(11, 41, 142) solid;
+}
+/* ================================================================= */
+                            /* Add/Delete */
+/* ================================================================= */
+.AD {
+    background-color: rgba(240, 240, 240, 0.5);
+    backdrop-filter: blur(1px);
+    border-radius: 20px;
+    margin: 100px 30px 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.AD h1 {
+    font-size: 60px;
+    color: rgb(94, 185, 218);
+    margin: 40px;
+}
+.AD h2 {
+    font-size: 20px;
+    color: rgb(94, 185, 218);
+    margin: 40px;
+}
+.AD h4 {
+    font-size: 20px;
+    color: rgb(94, 185, 218);
+    margin: 40px;
+}
+.AD form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.AD form label{
+    margin: 10px;
+    color: rgb(94, 185, 218);
+}
+.AD form input[type="submit"] {
+    margin-bottom: 20px;
+    width: 20%;
+}
+.AD input[type="submit"] {
+    width: 40%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 100px;
+    margin-top: 30px;
+    background-color: rgb(94, 185, 218);
+    color: rgb(245, 241, 241);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.AD input[type="submit"]:hover {
+    scale: 1.025;
+}
+
+.AD input[type="submit"]:active {
+    scale: 0.99;
+}
+
 
 /* ================================================================= */
                             /* No JS */

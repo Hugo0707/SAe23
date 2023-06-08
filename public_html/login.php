@@ -7,7 +7,6 @@
     }
     require_once("../config/config.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +27,7 @@
         <div class="circle five"></div>
         <div class="circle sixe"></div>
     </section>
-
     <section class="main">
-
         <?php       
             
             //Database connection
@@ -88,7 +85,6 @@
         ?>
 
     </section>
-
     <footer>
         <ul>
             <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>

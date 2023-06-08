@@ -45,7 +45,7 @@
         <div class="circle five"></div>
         <div class="circle sixe"></div>
     </section>
-    <section class="main">
+    <section class="mainContact">
         <div>
             <h1 class="TitleContact">Contact form</h1>
             <form class="ContactForm" name="ContactForm" action="mailto:baptiste.alteirac@gmail.com" method="post">
@@ -55,7 +55,7 @@
                 <input type="email" id="email" name="email" required>
                 <label for="message">Your message:</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
-                <input type="submit" value="Send">
+                <input type="submit" value="Submit">
             </form>
         </div>
     </section>
