@@ -80,6 +80,7 @@
 
         <label for="Type_sensor"> Type du Capteur:  </label>
         <select name="Type_sensor">
+            <!-- Save the previous choice -->
             <option value="temperature" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'temperature')) echo 'selected'; ?>> Temperature </option>
             <option value="humidity" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'humidity')) echo 'selected'; ?>> Humidité </option>
             <option value="activity" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'activity')) echo 'selected'; ?>> Activité </option>

@@ -80,7 +80,6 @@
     </footer>
 </body>
 </html>
-<!-- JS warning -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('js-message').style.display = 'none';
