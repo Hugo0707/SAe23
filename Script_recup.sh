@@ -23,7 +23,7 @@ nbr_line=$(wc -l < ./data.txt)
 nbr_sensor=$(($nbr_line / 3))
 
 # creation of the recovery function and sends data
-fonction()
+recovery()
 {
 
 	# mqtt connection parameter
@@ -62,7 +62,7 @@ do
 	Room=$(sed '3q;d' ./data.txt)
 
 	# Parallel execution of the function
-	fonction "$ID_sensor" "$Type_sensor" "$Room" &
+	recovery "$ID_sensor" "$Type_sensor" "$Room" &
 
 	# Deletion of the first 3 lines of the file containing the information of the sensors
 	sed -i '1,3d' data.txt
