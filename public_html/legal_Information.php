@@ -60,17 +60,18 @@
                         </h2>
                         <p>
                             Owner's name: Yassir Boulouiha Gnaoui
-                            Owner's address: Allée Maurice Sarraut 31000 - Toulouse
+                            Owner's address: 2 boulevard armand duportal 31000 - Toulouse
                         </p>
                             
                         <p>
-                            Website Developer: Boulouiha Gnaoui Yassir
+                            Website Developer: Baptiste Alteirac
                             Publication Manager: Boulouiha Gnaoui Yassir
                             Contact the Publication Manager: yassir.boulouiha.iut@gmail.com
                         </p>
                             
                         <p> 
-                            The Designer is: Boulouiha Gnaoui Yassir
+                            The Designer is: Baptiste Alteirac
+                            The Developers are : Yassir Boulouiha, Hugo Calmels, Gabin Lopez, Baptiste Alteirac
                             Contact the Developer: yassir.boulouiha.iut@gmail.com 
                         </p>
                             
