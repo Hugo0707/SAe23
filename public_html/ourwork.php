@@ -90,7 +90,8 @@
                         &bull;Yassir's part :
                         </h2>
                         <p>
-                        During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
+                            During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
+                        </p>
                         <br>
                         <p>
 
@@ -104,7 +105,7 @@
                             To solve this problem, I changed the number of characters in the VARCHAR of the two password fields in the database to 2500 characters. <br>
                         </p>
                         
-                        </p>
+                        <p>
 
                          Problem encountered: <br>
 
