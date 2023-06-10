@@ -92,14 +92,18 @@
                         <p>
                         During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
                         <br>
-                        Problem encountered: <br>
+                        <p>
 
-                        Database hash truncation: When we designed the database we gave 255 characters in VARCHAR for our password fields, and this caused a problem because when I added a building with a manager who had a password that was a bit long, the password hash that was longer than 255 characters was truncated in the database which prevented password verification when logging in. <br>
+                            Problem encountered: <br>
+
+                            Database hash truncation: When we designed the database we gave 255 characters in VARCHAR for our password fields, and this caused a problem because when I added a building with a manager who had a password that was a bit long, the password hash that was longer than 255 characters was truncated in the database which prevented password verification when logging in. <br>
+
+                            <br>
+                            Solution : <br>
+
+                            To solve this problem, I changed the number of characters in the VARCHAR of the two password fields in the database to 2500 characters. <br>
+                        </p>
                         
-                        <br>
-                        Solution : <br>
-
-                        To solve this problem, I changed the number of characters in the VARCHAR of the two password fields in the database to 2500 characters. <br>
                         </p>
 
                          Problem encountered: <br>
