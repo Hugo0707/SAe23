@@ -90,7 +90,8 @@
                         &bull;Yassir's part :
                         </h2>
                         <p>
-                        During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
+                            During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
+                        </p>
                         <br>
                         <p>
 
@@ -110,7 +111,7 @@
 
                             I realized that when submitting a form, GET or POST, the data entered in the previous form is not saved in the new one. I needed to do this, as I wanted to display only the rooms that were linked to the building chosen in the previous form, the one that retrieves the room and sends the request to add a sensor. <br>
 
-                        Solution : <br>
+                            Solution : <br>
 
                             To overcome this problem, I saved the choices made in previous forms in the input tags of the next form, and set these tags to type="hidden", which hides them from users. This solved the problem and produced the result I wanted. <br>
                         </p>
