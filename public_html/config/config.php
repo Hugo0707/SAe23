@@ -1,10 +1,10 @@
 <?php 
 
     //DB identifiers
-    $dbHost = "91.234.195.40";
-    $dbUser = "c1998364c_admin";    
-    $dbPass = '?&([RSeh;]SQ';       //Enter user password, if no password for user leave blank
-    $dbName = "c1998364c_sae23";      //Name of the database to be used
+    $dbHost = "";
+    $dbUser = "";    
+    $dbPass = '';       //Enter user password, if no password for user leave blank
+    $dbName = "";      //Name of the database to be used
 
     //Rooms in the iut buildings
     $building_rooms = [
