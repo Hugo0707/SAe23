@@ -5,7 +5,7 @@
         header('Location: ./connection.php');
         exit();
     }
-    require_once("../config/config.php");
+    require_once("./config/config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

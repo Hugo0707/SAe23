@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once("../config/config.php");
+require_once("./config/config.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +46,7 @@ $rooms = fetchResults($result_rooms);
         <nav class="nav">
             <span class="title">SAE 23</span>
             <ul class="pages">
-                <li><a class="effect-underline" href="./Index.php">Home</a></li>
+                <li><a class="effect-underline" href="./index.php">Home</a></li>
                 <li><a class="effect-underline" href="./sensors.php">Sensors</a></li>
                 <li><a class="effect-underline" href="./contact.php">Contact</a></li>
                 <li><a class="effect-underline" href="./legal_Information.php">Legal Notice</a></li>

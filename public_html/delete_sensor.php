@@ -6,7 +6,7 @@
         exit();
     }
     //Include config file for db connection
-    require_once("../config/config.php");
+    require_once("./config/config.php");
 ?>
 
 <!DOCTYPE html>

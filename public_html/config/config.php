@@ -1,23 +1,10 @@
 <?php 
-    /*  
-        The config folder MUST ABSOLUTELY be placed in the directory where the public_html folder is located.
-        NOT INSIDE THE public_html DIRECTORY
-          ________________________________________
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
-        //----------------------------------------\\
-        || ! WARNING: DO NOT PUT THIS FILE       !||
-        || ! IN YOUR PUBLIC HTML DIRECTORY       !|| 
-        || ! WHERE IT CAN BE DOWNLOADED          !|| 
-        || ! BY ANY USER                         !||
-        ||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!||
-        \\________________________________________//
-    */
 
     //DB identifiers
-    $dbHost = "localhost";
-    $dbUser = "admin";    
-    $dbPass = 'sae23';       //Enter user password, if no password for user leave blank
-    $dbName = "sae23";      //Name of the database to be used
+    $dbHost = "";
+    $dbUser = "";    
+    $dbPass = '';       //Enter user password, if no password for user leave blank
+    $dbName = "";      //Name of the database to be used
 
     //Rooms in the iut buildings
     $building_rooms = [

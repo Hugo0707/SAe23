@@ -17,7 +17,7 @@
         <nav class="nav">
             <span class="title">SAE 23</span>
             <ul class="pages">
-                <li><a class="effect-underline" href="./Index.php">Home</a></li>
+                <li><a class="effect-underline" href="./index.php">Home</a></li>
                 <li><a class="effect-underline" href="./sensors.php">Sensors</a></li>
                 <li><a class="effect-underline" href="./contact.php">Contact</a></li>
                 <li><a class="effect-underline" href="./legal_Information.php">Legal Notice</a></li>
@@ -91,7 +91,18 @@
                         </h2>
                         <p>
                         During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
+                        <br>
                         Problem encountered: <br>
+
+                        Database hash truncation: When we designed the database we gave 255 characters in VARCHAR for our password fields, and this caused a problem because when I added a building with a manager who had a password that was a bit long, the password hash that was longer than 255 characters was truncated in the database which prevented password verification when logging in. <br>
+                        
+                        <br>
+                        Solution : <br>
+
+                        To solve this problem, I changed the number of characters in the VARCHAR of the two password fields in the database to 2500 characters. <br>
+                        </p>
+
+                         Problem encountered: <br>
 
                             I realized that when submitting a form, GET or POST, the data entered in the previous form is not saved in the new one. I needed to do this, as I wanted to display only the rooms that were linked to the building chosen in the previous form, the one that retrieves the room and sends the request to add a sensor. <br>
 
@@ -99,6 +110,7 @@
 
                             To overcome this problem, I saved the choices made in previous forms in the input tags of the next form, and set these tags to type="hidden", which hides them from users. This solved the problem and produced the result I wanted. <br>
                         </p>
+
                         <h2>
                         &bull;Baptiste's part :
                         </h2>
