@@ -75,6 +75,17 @@ $rooms = fetchResults($result_rooms);
         <div class="circle sixe"></div>
     </section>
     <section class="mainSensors">
+        <!-- If No JS -->    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
+    </script>
         <table>
             <?php
             if (!empty($measures)) {
@@ -110,12 +121,12 @@ $rooms = fetchResults($result_rooms);
                 <input type='submit' value='Submit'>
                 </form>
                 <tr>
-                    <th> Capteur </th>
-                    <th> Batiment </th>
-                    <th> Salle </th>
-                    <th> Mesure </th>
+                    <th> Sensor </th>
+                    <th> Building </th>
+                    <th> Room </th>
+                    <th> Measure </th>
                     <th> Date </th>
-                    <th> Heure </th>
+                    <th> Time </th>
                 </tr>";
                 //Script that deletes the form's empty default choices, and if a date filter is requested, it sets the date to the correct format (french format)
                 foreach ($_GET as $key => $value) {
@@ -165,7 +176,7 @@ $rooms = fetchResults($result_rooms);
     </section>
     <footer>
         <ul>
-            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
             <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>

@@ -16,7 +16,7 @@
     <!--CSS for the page-->
     <link rel="stylesheet" href="./Style/style.css">
     <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-    <title>Connexion en cours...</title>
+    <title>Connection in progress...</title>
 </head>
 <body>
 <section class="background">
@@ -28,6 +28,17 @@
         <div class="circle sixe"></div>
     </section>
     <section class="main">
+        <!-- If No JS -->    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
+    </script>
         <?php       
             
             //Database connection
@@ -73,7 +84,7 @@
                 }
             }
             if (!$known) {
-                echo '<center> <h1> Login ou Mot de Passe Incorrect ! </h1> </center>';
+                echo '<center> <h1> Login or Password Incorrect ! </h1> </center>';
                 echo '
                 <script>
                     setTimeout(function() {
@@ -87,20 +98,11 @@
     </section>
     <footer>
         <ul>
-            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
             <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
         </ul>
     </footer>
-    <div id="js-message" style="display: block;">
-        <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
-    </div>
 </body>
 </html>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('js-message').style.display = 'none';
-    });
-</script>

@@ -47,20 +47,34 @@
         <div class="circle sixe"></div>
     </section>
     <section class="main">
+    <!-- If No JS -->    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
+    </script>
         <ul class="home">
             <li>
                 <ul class="text">
                     <li><h1>Who we are</h1></li>
                     <li>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p>We are 4 students in the first year of a Bachelor's degree in Networks and Telecommunications at the IUT in Blagnac. SAE 23 is one of our biggest projects of this first year.</p>
                     </li>
                     <li><h1>A bit of context</h1></li>
                     <li>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p>We carried out this project with the aim of improving working conditions in a company. To do this, we had to find a way of facilitating day-to-day work, by creating a dynamic web site enabling direct consultation of the values returned by various sensors located around the IUT. This site also enables the administration of the various managers and sensors.</p>
                     </li>
                     <li><h1>How it works</h1></li>
                     <li>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p>Our site works in several stages, the first is the recovery of data sent by the several sensors. To achieve this, we have set up a bash script that gathers the data and exports it in the right format to the database.
+                        Then we use php scripts to integrate the data into our site. We have also set up filters to improve the reading of this data.
+                        As mentioned above, our site also enables the administration of sensors and building managers. To enable this, we have set up a login and password system to allow access to these options. To find out more, please visit the "Our work" page, where we describe our work in detail.
+                        </p>
                     </li>
                 </ul>
             </li>
@@ -69,7 +83,7 @@
     </section>
     <footer>
         <ul>
-            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
             <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>

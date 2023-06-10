@@ -18,7 +18,7 @@
         <!--CSS for the page-->
         <link rel="stylesheet" href="./Style/style.css">
         <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-    <title>Ajout de Batiment</title>
+    <title>Add Building</title>
 </head>
 <body>
     <section class="background">
@@ -30,6 +30,17 @@
         <div class="circle sixe"></div>
     </section>
     <section class="AD">
+    <!-- If No JS -->    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
+    </script>
     <?php 
         //Database connection
         try {
@@ -54,9 +65,9 @@
 
     <form action="./add_building.php" method="POST">
 
-        <h1> Ajout de Batiment </h1>
+        <h1> Add Building </h1>
 
-        <label for="Name_building"> Nom du Batiment :  </label>
+        <label for="Name_building"> Building name :  </label>
         <select name="Name_building" >
             <?php 
                 //Suggests only buildings that have not already been added
@@ -87,27 +98,27 @@
                 echo"</select>";
                 if ($no_option) {
                     //Redirect to admin page
-                    echo '<center> <h1> Vous avez dejà ajouté tous les batiments disponnibles ! </h1> </center>
+                    echo "<center> <h1> You've already added all the available buildings ! </h1> </center>
                     <script>
                         setTimeout(function() {
-                            window.location.href = "./admin.php";
+                            window.location.href = './admin.php';
                         }, 1500); 
-                    </script>';
+                    </script>";
                 }
                 
             ?>
         <br><br>
-        <label for="Login_manager"> Login du Gestionnaire : </label>
+        <label for="Login_manager"> Manager login  : </label>
         <input type="text" name="Login_manager">
         <br><br>
-        <label for="Email_manager"> Email du Gestionnaire :  </label>
+        <label for="Email_manager"> Manager's email :  </label>
         <input type="text" name="Email_manager">
         <br><br>
-        <label for="Password_manager"> Mdp du Gestionnaire : </label>
+        <label for="Password_manager"> Manager's password : </label>
         <input type="password" name="Password_manager">
         <br><br>
 
-        <input type="submit" value="Ajouter">
+        <input type="submit" value="ADD">
         
 
     </form>
@@ -133,11 +144,11 @@
             try {
                 mysqli_query($id_bd, $query);
             } catch (Exception $e) {
-                die("ERREUR REQUETE SQL LE BATIMENT N'A PAS ETE AJOUTÉ ! : <br>" . $e);
+                die("SQL REQUEST ERROR THE BUILDING HAS NOT BEEN ADDED ! : <br>" . $e);
             }
             
             //Redirect to admin page
-            echo '<center> <h4> BATIMENT AJOUTÉ AVEC SUCCES ! </h4> </center>
+            echo '<center> <h4> BUILDING SUCCESSFULLY ADDED ! </h4> </center>
                 <script>
                     setTimeout(function() {
                         window.location.href = "./admin.php";
@@ -149,7 +160,7 @@
         elseif ($_SERVER['REQUEST_METHOD'] ==="POST") {
             echo '
             <script>
-                alert("Tous les champs sont obligatoires !")
+                alert("All fields are required !")
             </script>';
         }
        

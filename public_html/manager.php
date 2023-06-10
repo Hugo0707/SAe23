@@ -22,7 +22,7 @@
         <!--CSS for the page-->
         <link rel="stylesheet" href="./Style/style.css">
         <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-        <title>Manager Page</title>
+        <title>Manager</title>
     </head>
     <body>
     <header>
@@ -59,8 +59,20 @@
         <div class="circle sixe"></div>
     </section>
     <section class="mainManager">
+        <!-- If No JS -->    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
+    </script>
         <?php
 
+            //Logout button
             if (isset($_GET["logout"])) {   
                 session_destroy();
                 echo '<script> window.location.href = "./connection.php"; </script>';
@@ -124,7 +136,7 @@
                   if (!(startTime === '' && endTime === '') && (startTime >= endTime) )
                     {
                         event.preventDefault(); //Prevents form from being sent
-                        alert('L\'heure de début doit être inférieure à l\'heure de fin !');
+                        alert('The start time must be less than the end time !');
                     }
                 });
 
@@ -189,19 +201,19 @@
                             </div>
 
                             <br>
-                            <input type='submit' value='Appliquer'>
+                            <input type='submit' value='Submit'>
                         
                     
                         </form>
 
                         <tr>
 
-                        <th> Capteur </th>
-                        <th> Batiment </th>
-                        <th> Salle </th>
-                        <th> Mesure </th>
+                        <th> Sensor </th>
+                        <th> Building </th>
+                        <th> Room </th>
+                        <th> Measure </th>
                         <th> Date </th>
-                        <th> Heure </th>
+                        <th> Time </th>
                     
                         </tr>
                     ";
@@ -291,30 +303,22 @@
                     }    
                 }
                 else {
-                    echo "<center> <h2> Aucune valeur enregistrée pour le moment ! <h2> </center>";
+                    echo "<center> <h2> No value recorded for the moment ! <h2> </center>";
                 }
             ?>
 
         </table>
         <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <input type="submit" name="logout" value="Logout">
+            <input type="submit" name="logout" value="Log out">
         </form>
     </section>
     <footer>
             <ul>
-                <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+                <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
                 <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
                 <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
                 <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
             </ul>
         </footer>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('js-message').style.display = 'none';
-            });
-        </script>
-        <div id="js-message" style="display: block;">
-            <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
-        </div>
     </body>
 </html>

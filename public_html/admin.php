@@ -21,15 +21,18 @@
         <!--CSS for the page-->
         <link rel="stylesheet" href="./Style/style.css">
         <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-        <title>Admin Page</title>
+        <title>Admin</title>
     </head>
-    <div id="js-message" style="display: block;">
-        <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
-    </div>
+    <!-- If No JS -->    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('js-message').style.display = 'none';
         });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
     </script>
     <body>
     <header>
@@ -66,7 +69,7 @@
         <div class="circle sixe"></div>
     </section>
     <section class="mainAdmin">
-    <h2> Capteurs Crées : </h2>
+    <h2> Created Sensors : </h2>
     <table>
         
         <?php
@@ -119,14 +122,14 @@
             }
             else 
                 {
-                echo"<h4> Aucun Capteur </h4>";
+                echo"<h4> No Sensor </h4>";
             }
     
         ?>
 
     </table>
     <a class="main_btn add" href="./add_sensor.php"> Add a sensor </a>
-    <h2> Batiments Crées : </h2>
+    <h2> Created buildings : </h2>
     <table>
             <?php 
 
@@ -172,7 +175,7 @@
                 }
                 else 
                 {
-                    echo"<h4> Aucun Batiment </h4>";
+                    echo"<h4> No building </h4>";
                 }
 
             ?>
@@ -180,12 +183,12 @@
     </table>
     <a class="main_btn add" href="./add_building.php"> Add a building </a>
     <form id="Logout" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <input type="submit" name="logout" value="Logout">
+            <input type="submit" name="logout" value="Log out">
     </form>
     </section>
     <footer>
     <ul>
-        <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+        <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
         <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
         <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
         <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>

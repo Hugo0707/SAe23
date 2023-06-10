@@ -47,33 +47,78 @@
         <div class="circle sixe"></div>
     </section>
     <section class="main">
+        <!-- If No JS -->    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('js-message').style.display = 'none';
+        });
+        </script>
+
+        <div id="js-message" style="display: block;">
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
+        </div>
+    </script>
                 <ul class="notice">
                     <li>
-                        <h1>LEGAL NOTICE: </h1>
+                        <h1>Our work: </h1>
                     </li>
                     <li>
-                        <p>
-                            In accordance with the provisions of Articles 6-III and 19 of Law No. 2004-575 of June 21, 2004, known as the L.C.E.N. (Confidence in the Digital Economy Law), we hereby inform visitors to the website: iot.ybgn.fr of the following data:
-                        </p>
                         <h2>
-                            1. Legal Information:
+                        &bull;Hugo's part :
                         </h2>
                         <p>
-                            Owner's name: Yassir Boulouiha Gnaoui
-                            Owner's address: Allée Maurice Sarraut 31000 - Toulouse
+                        I took care of the two gantts, the database design with Yassir and the creation of the data recuperation script.<br>
+
+                        The provisional gantt was not complicated to create, as we had already divided up our tasks, so all we had to do was to put this division of tasks on the gantt. <br>
+
+                        Yassir and I gave a great deal of thought to the design of the database, as this was the most important stage of the project. It's thanks to this database that the project will be able to function. <br>
+
+                        When I wanted to start the data retrieval script, I didn't know where to begin. So I started with a basic script that retrieves mqtt data. The second step of this script was to process the received data. The third step was to send the received data to the database we had created. The fourth step was to create a dynamic script that would process all the data requested from the database. The fifth step was to execute parts of my script in parallel to make it run faster. The final step was to indent and format the script. <br>
+
+                        When the actual gantt was completed, I realized that we had met the critical dates we had set ourselves, and that the project had therefore been successfully completed. <br>
+
+                        One difficulty I encountered was optimizing the bash script. In fact, in step 4, if there were 4 pieces of data to retrieve, the script would take 40 minutes to run. So I racked my brains to find the right solution to minimize the script execution time to 10 min maximum.
                         </p>
-                            
+                        <h2>
+                        &bull;Gabin's part :
+                        </h2>
                         <p>
-                            Website Developer: Boulouiha Gnaoui Yassir
-                            Publication Manager: Boulouiha Gnaoui Yassir
-                            Contact the Publication Manager: yassir.boulouiha.iut@gmail.com
+                        I took care of making node-red and grafana, on node-red, I set up the mqtt in to retrieve the mqtt messages we needed from the topic. Then on node-red I downloaded the dashboard to be able to add gauges that I configured according to the building and the room. <br>
+                        Then I had to create a sensor database in influxdb to put the values collected from node-red directly into the database. To do this, I had to install a tool on node-red to add the required node. This allowed me to set up the graphs on grafana.
+                        </p>
+                        <h2>
+                        &bull;Yassir's part :
+                        </h2>
+                        <p>
+                        During this SAE, I worked with Hugo on the database design, so that we could agree from the outset on the types of data we were going to use, and so that our two scripts could work together. Secondly, and this was my main task, I took care of the back-end of the dynamic website, I essentially produced PHP code, but also JavaScript and HTML, in order to retrieve measurements from the database and display them, add/remove sensors and buildings and filter functionalities for displaying measurements. <br>
+                        Problem encountered: <br>
+
+                            I realized that when submitting a form, GET or POST, the data entered in the previous form is not saved in the new one. I needed to do this, as I wanted to display only the rooms that were linked to the building chosen in the previous form, the one that retrieves the room and sends the request to add a sensor. <br>
+
+                        Solution : <br>
+
+                            To overcome this problem, I saved the choices made in previous forms in the input tags of the next form, and set these tags to type="hidden", which hides them from users. This solved the problem and produced the result I wanted. <br>
+                        </p>
+                        <h2>
+                        &bull;Baptiste's part :
+                        </h2>
+                        <p>
+                        During this SAE, my main mission was to create the site, focusing on the front-end. <br>
+
+                        Initially, I spent time rethinking the site's tree structure, as it was not optimal for managing the back-end. I made adjustments during the site creation phase to optimize it. <br>
+
+                        I then divided the site into different parts/pages to make it easier to understand. This segmentation allowed me to better structure the content. <br>
+
+                        Once this stage was complete, I began work on creating the HTML/CSS code. This was the most time-consuming part, as it was essential that the code be fully PHP-compatible. Therefore I produced a first version without taking PHP into account, then I adapted the parts of the site requiring the use of PHP. <br>
+
+                        Once this task had been completed, I set about writing and translating the various parts of the site, with the exception of the "Our work" section, which was written by all of us.
                         </p>
                     </li>
                 </ul>
     </section>
     <footer>
         <ul>
-            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT de Blagnac Département R&T</a></li>
+            <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
             <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
             <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>

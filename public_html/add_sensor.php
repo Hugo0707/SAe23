@@ -18,7 +18,7 @@
         <!--CSS for the page-->
         <link rel="stylesheet" href="./Style/style.css">
         <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-    <title>Ajout de Capteur</title>
+    <title>Add sensor</title>
 </head>
 <body>
     <section class="background">
@@ -30,6 +30,7 @@
         <div class="circle sixe"></div>
     </section>
     <section class="AD">
+    <!-- If No JS -->    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('js-message').style.display = 'none';
@@ -37,7 +38,7 @@
         </script>
 
         <div id="js-message" style="display: block;">
-            <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
         </div>
     </script>
 
@@ -63,7 +64,7 @@
         $buildings = fetchResults($result);
 
         if (empty($buildings)) {
-            echo '<center> <h1> Vous devez d\'abord créer un batiment avant cela ! </h1> </center>
+            echo '<center> <h1> You have to create a building first! </h1> </center>
                     <script>
                         setTimeout(function() {
                             window.location.href = "./admin.php";
@@ -76,22 +77,22 @@
 
     <form action="" method="$_GET">
 
-        <h1> Ajout de Capteur </h1>
+        <h1> Add sensor </h1>
 
-        <label for="Type_sensor"> Type du Capteur:  </label>
+        <label for="Type_sensor"> Sensor type :  </label>
         <select name="Type_sensor">
             <!-- Save the previous choice -->
             <option value="temperature" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'temperature')) echo 'selected'; ?>> Temperature </option>
-            <option value="humidity" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'humidity')) echo 'selected'; ?>> Humidité </option>
-            <option value="activity" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'activity')) echo 'selected'; ?>> Activité </option>
+            <option value="humidity" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'humidity')) echo 'selected'; ?>> Humidity </option>
+            <option value="activity" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'activity')) echo 'selected'; ?>> Activity </option>
             <option value="co2" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'co2')) echo 'selected'; ?>> Co2 </option>
-            <option value="illumination" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'illumination')) echo 'selected'; ?>> Luminosité </option>
-            <option value="pressure" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'pressure')) echo 'selected'; ?>> Pression </option>
+            <option value="illumination" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'illumination')) echo 'selected'; ?>> Illumination </option>
+            <option value="pressure" <?php if( isset($_GET['Type_sensor']) && ($_GET['Type_sensor'] === 'pressure')) echo 'selected'; ?>> Pressure </option>
 
         </select>
         <br><br>
 
-        <label for="ID_building"> Batiment : </label>
+        <label for="ID_building"> Building : </label>
         <select name="ID_building">
             
             <?php 
@@ -105,7 +106,7 @@
         </select>
         <br><br>
         
-        <input type="submit" value="Suivant">
+        <input type="submit" value="Next">
         <br><br>
 
     </form>
@@ -115,7 +116,7 @@
 
         if (!empty($_GET['ID_building'])) {
             
-            echo "<form action='' method='POST'> <label for='Room_sensor'> Salle : </label> <select name='Room_sensor'>";
+            echo "<form action='' method='POST'> <label for='Room_sensor'> Room : </label> <select name='Room_sensor'>";
 
                 //Displays only the rooms associated with the building selected in the previous form.
                 for ($i=0; $i < count($buildings); $i++) { 
@@ -131,7 +132,7 @@
                 
             echo "
             </select><br><br>
-            <input type='submit' value='Ajouter le Capteur'>";
+            <input type='submit' value='Add Sensor'>";
             echo " <input type='hidden' name='Type_sensor' value='" . $_GET['Type_sensor'] . "'>";
             echo " <input type='hidden' name='ID_building' value='" . explode('-', $_GET['ID_building'])[0] . "'>";
             echo "</form>"; 
@@ -164,10 +165,10 @@
             try {
                 mysqli_query($id_bd, $query);
             } catch (Exception $e) {
-                die("ERREUR REQUETE SQL LE CAPTEUR N'A PAS ÉTÉ AJOUTÉ ! : <br>" . $e);
+                die("SQL REQUEST ERROR THE SENSOR HAS NOT BEEN ADDED! : <br>" . $e);
             }
 
-            echo '<center> <h4> CAPTEUR AJOUTÉ AVEC SUCCES ! </h4> </center>
+            echo '<center> <h4> SENSOR SUCCESSFULLY ADDED! </h4> </center>
                 <script>
                     setTimeout(function() {
                         window.location.href = "./admin.php";
@@ -178,7 +179,7 @@
         elseif ($_SERVER['REQUEST_METHOD'] ==="POST") {
             echo '
             <script>
-                alert("Tous les champs sont obligatoires !")
+                alert("All fields are required !")
             </script>';
         }
        

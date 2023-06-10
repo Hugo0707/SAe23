@@ -19,7 +19,7 @@
         <!--CSS for the page-->
         <link rel="stylesheet" href="./Style/style.css">
         <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-        <title>Suppression du Batiment</title>
+        <title>Building removal</title>
     </head>
     <body>
     <section class="background">
@@ -31,17 +31,17 @@
         <div class="circle sixe"></div>
     </section>
     <section class="AD">
-
-
-        <script>
+    <!-- If No JS -->    
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('js-message').style.display = 'none';
         });
         </script>
-        
+
         <div id="js-message" style="display: block;">
-            <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
         </div>
+    </script>
 
         <?php 
 
@@ -62,18 +62,18 @@
         <form method='post' action="">
 
             <center> 
-                <h2> Voulez vous vraiment supprimer ce Batiment ? Cette action sera irréversible ! <br> En supprimant ce batimant vous supprimez tous les Capteurs et mesures associées ! </h2>
+                <h2> Do you really want to remove this building? This action will be irreversible ! <br> If you remove this building, you remove all the sensors and associated measurements ! </h2>
             </center>
 
-            <label for="oui">Oui</label>
+            <label for="oui">Yes</label>
             <input type="radio" name="confirm" value="yes" id="oui">
 
-            <label for="non">Non</label>
+            <label for="non">No</label>
             <input type="radio" name="confirm" value="no" id="non">
             
             <input type="hidden" name="delete" value="<?php echo $id_building;?>">
 
-            <input type="submit" value="Valider">
+            <input type="submit" value="VSubmit">
         </form>
 
 
@@ -90,11 +90,11 @@
                     try {
                         mysqli_query($id_bd, $query);
                     } catch (Exception $e) {
-                        die("ERREUR REQUETE SQL Batiment NON SUPPRIMÉ : <br>" . $e );
+                        die("SQL REQUEST ERROR BUILDING NOT DELETED : <br>" . $e );
                     }
 
                     echo '
-                        <center> <h1> Batiment SUPPRIMÉ AVEC SUCCES </h1> </center>
+                        <center> <h1> building successfully removed </h1> </center>
                         <script>
                             setTimeout(function() {
                                 window.location.href = "./admin.php";

@@ -19,7 +19,7 @@
         <!--CSS for the page-->
         <link rel="stylesheet" href="./Style/style.css">
         <link rel="icon" href="./Images/IOT_Logo.png" type="image/gif">
-        <title>Suppression du Capteur</title>
+        <title>Sensor removal</title>
     </head>
     <body>
     <section class="background">
@@ -31,17 +31,17 @@
         <div class="circle sixe"></div>
     </section>
     <section class="AD">
-
-
-        <script>
+    <!-- If No JS -->    
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('js-message').style.display = 'none';
         });
         </script>
-        
+
         <div id="js-message" style="display: block;">
-            <center> <h1> Veuillez activer JavaScript afin de permettre au site de fonctionner correctement. </h1> </center>
+            <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
         </div>
+    </script>
 
         <?php 
 
@@ -62,18 +62,18 @@
         <form method='post' action="">
 
             <center> 
-                <h2> Voulez vous vraiment supprimer ce capteur ? Cette action sera irréversible ! <br> Toutes les mesures associées a ce capteur seront supprimées également ! </h2>
+                <h2> Do you really want to remove this sensor ? This action is irreversible ! <br> All measurements associated with this sensor will also be deleted ! </h2>
             </center>
 
-            <label for="oui">Oui</label>
+            <label for="oui">Yes</label>
             <input type="radio" name="confirm" value="yes" id="oui">
 
-            <label for="non">Non</label>
+            <label for="non">No</label>
             <input type="radio" name="confirm" value="no" id="non">
             
             <input type="hidden" name="delete" value="<?php echo $id_sensor;?>">
 
-            <input type="submit" value="Valider">
+            <input type="submit" value="Submit">
         </form>
 
 
@@ -90,12 +90,12 @@
                     try {
                         mysqli_query($id_bd, $query);
                     } catch (Exception $e) {
-                        echo " ERREUR :  " . $e;
-                        die("ERREUR REQUETE SQL CAPTEUR NON SUPPRIMÉ : <br>" . $e);
+                        echo " ERROR :  " . $e;
+                        die("SQL REQUEST ERROR SENSOR NOT DELETED : <br>" . $e);
                     }
 
                     echo '
-                        <center> <h1> CAPTEUR SUPPRIMÉ AVEC SUCCES </h1> </center>
+                        <center> <h1> SENSOR SUCCESSFULLY REMOVED </h1> </center>
                         <script>
                             setTimeout(function() {
                                 window.location.href = "./admin.php";
