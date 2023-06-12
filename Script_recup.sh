@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # database connection parameter
-db_user="admin"
-db_pass="sae23"
-db_host="localhost"
-db_base="sae23"
+db_user="c1998364c_admin"
+db_pass="?&([RSeh;]SQ"
+db_host="91.234.195.40"
+db_base="c1998364c_sae23"
 
 # Reset of the file which will contain the information of the sensors
 > data.txt
@@ -18,12 +18,15 @@ do
 	echo $data >> data.txt
 done
 
+# Close the database connetion
+/opt/lampp/bin/mysql -h $db_host -D $db_base -u $db_user -p$db_pass -e "EXIT"
+
 # calculate the number of sensors to process
 nbr_line=$(wc -l < ./data.txt)
 nbr_sensor=$(($nbr_line / 3))
 
 # creation of the recovery function and sends data
-recovery()
+fonction()
 {
 
 	# mqtt connection parameter
@@ -45,6 +48,9 @@ recovery()
 
 	# SQL query execution
 	/opt/lampp/bin/mysql -h $db_host -D $db_base -u $db_user -p$db_pass -e "$insert_data"
+	
+	# Close the database connetion
+	/opt/lampp/bin/mysql -h $db_host -D $db_base -u $db_user -p$db_pass -e "EXIT"
 
 }
 
@@ -62,7 +68,7 @@ do
 	Room=$(sed '3q;d' ./data.txt)
 
 	# Parallel execution of the function
-	recovery "$ID_sensor" "$Type_sensor" "$Room" &
+	fonction "$ID_sensor" "$Type_sensor" "$Room" &
 
 	# Deletion of the first 3 lines of the file containing the information of the sensors
 	sed -i '1,3d' data.txt
