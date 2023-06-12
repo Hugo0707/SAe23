@@ -57,6 +57,7 @@
             $result = mysqli_query($id_bd, "SELECT ID_building, Name_building FROM `building`");
         
         } catch (Exception $e) {
+            mysqli_close($id_bd);
            die("ERROR DATA RECOVERY FAILED : <br>" . $e);
         }
 
@@ -145,13 +146,6 @@
 
         if ((!empty($_POST['Type_sensor']) && !empty($_POST['Room_sensor']) && !empty($_POST['ID_building']))) { 
 
-            //Database connection
-            try {
-                $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
-            } 
-            catch(Exception $e) {
-                die("DATABASE CONNECTION ERROR : <br>" . $e);
-            }
 
             //Recovering values given by the manager
             $Type_sensor = mysqli_real_escape_string($id_bd, $_POST['Type_sensor']);
@@ -165,6 +159,7 @@
             try {
                 mysqli_query($id_bd, $query);
             } catch (Exception $e) {
+                mysqli_close($id_bd);
                 die("SQL REQUEST ERROR THE SENSOR HAS NOT BEEN ADDED! : <br>" . $e);
             }
 
@@ -182,6 +177,8 @@
                 alert("All fields are required !")
             </script>';
         }
+        
+        mysqli_close($id_bd);
        
     
     ?>

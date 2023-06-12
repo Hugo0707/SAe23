@@ -89,36 +89,99 @@
             //Sensor recovery
             try {
                 $result = mysqli_query($id_bd, "SELECT * FROM `view_sensor_admin`");
-                
+                $result_buildings = mysqli_query($id_bd, "SELECT Name_Building AS Building FROM `building`");
+                $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type FROM `view_sensor_admin`");
+                $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_sensor_admin`");
             } catch (Exception $e) {
+                mysqli_close($id_bd);
                 die("ERROR DATA RECOVERY FAILED : <br>" . $e);
             }
             
             //Placing the result in a table
             $sensors = fetchResults($result);
+            $buildings = fetchResults($result_buildings);
+            $distinct_sensors = fetchResults($result_sensors);
+            $rooms = fetchResults($result_rooms);
+
 
             if (!empty($sensors)) 
             {
-                    
-                echo'
+                
+                echo "
+                <!-- Table to display sensors retrieved from the database in an HTML table -->
+                <form action='' method='GET'>
+                    <!-- Form for collecting user-selected filters -->
+                    <h4>&bull; Buildings selection</h4>
+                    <select name='Building'>
+                        <option value='' selected></option>";
+                //Displays only buildings in the sensors
+                for ($i=0; $i <count($buildings) ; $i++) { 
+                    echo "<option value='" . $buildings[$i]['Building'] . "'>" . $buildings[$i]['Building'] . "</option>";
+                }
+                echo "</select>
+                <h4>&bull; Sensors selection</h4>
+                <select name='Type'>
+                    <option value='' selected></option>";
+                for ($i=0; $i <count($distinct_sensors) ; $i++) { 
+                    echo "<option value='" . $distinct_sensors[$i]['Type'] . "'>" . $distinct_sensors[$i]['Type'] . "</option>";
+                }
+                echo "</select>
+                <h4>&bull; Rooms selection</h4>
+                <select name='Room'>
+                    <option value='' selected></option>";
+                for ($i=0; $i <count($rooms) ; $i++) { 
+                    echo "<option value='" . $rooms[$i]['Room'] . "'>" . $rooms[$i]['Room'] . "</option>";
+                 }
+                echo "</select>
+                <input type='submit' value='Submit'>
+                </form>    
                 <tr>
                     <th> Type</th>
                     <th> Room </th>
                     <th> Building </th>
                     <th> Delete </th>
-                </tr>';
+                </tr>";
 
-                echo "<form method='post' action='./delete_sensor.php'>";
-                for ($i = 0; $i < count($sensors); $i++)
-                {
-                    echo "<tr>";
-                    for ($j = 1; $j < 4; $j++) {
-                        echo  "<td>". $sensors[$i][$j] . "</td>";
+                //Script that deletes the form's empty default choices
+                foreach ($_GET as $key => $value) {
+                    if (isset($value) && $value ==="") {
+                        unset($_GET[$key]);
                     }
-                    echo "<td> <input type='submit' value='delete' name='" . $sensors[$i][0] . "'> </td> </tr>";
                 }
-                echo "</form>";
+                //Script to display the values retrieved in their respective columns from the sensors table
+                for ($i = 0; $i < count($sensors); $i++) {
+                    //Checks if there are no filters with empty()
+                    if (empty($_GET)) {
 
+                        echo "<form method='post' action='./delete_sensor.php'>";
+                        echo "<tr>";
+                        for ($j = 1; $j < 4; $j++) {
+                            echo  "<td>". $sensors[$i][$j] . "</td>";
+                        }
+                        echo "<td> <input type='submit' value='delete' name='" . $sensors[$i][0] . "'> </td> </tr>";
+                        echo "</form>";
+                    }
+                    else {
+                        //Script to check whether filters and sensors match
+                        $match = true;
+                        foreach ($_GET as $key => $value) {
+                            if ($value != $sensors[$i][$key]) {
+                                $match = false;
+                                break; 
+                            }
+                        }
+                        //If all the filters entered match the measurement, the measurement is displayed
+                        if ($match) {
+                            echo "<form method='post' action='./delete_sensor.php'>";
+                            echo "<tr>";
+                            for ($j = 1; $j < 4; $j++) {
+                                echo  "<td>". $sensors[$i][$j] . "</td>";
+                            }
+                            echo "<td> <input type='submit' value='delete' name='" . $sensors[$i][0] . "'> </td> </tr>";
+                            echo "</form>";
+                        }
+                    }
+                }
             }
             else 
                 {
@@ -145,6 +208,7 @@
                     $result = mysqli_query($id_bd, $query);
                 
                 } catch (Exception $e) {
+                    mysqli_close($id_bd);
                    die("ERROR DATA RECOVERY FAILED : . $e");
                 }
             
@@ -177,6 +241,8 @@
                 {
                     echo"<h4> No building </h4>";
                 }
+
+                mysqli_close($id_bd);
 
             ?>
 

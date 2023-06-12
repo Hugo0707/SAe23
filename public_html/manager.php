@@ -93,7 +93,8 @@
                 $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_sensor_page` WHERE Building = '" . $_SESSION['building'] . "';");
             } 
             catch(Exception) {
-               die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR : ");
+                mysqli_close($id_bd);
+                die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR : ");
             }
             
             //Placing values in the measures table
@@ -305,6 +306,7 @@
                 else {
                     echo "<center> <h2> No value recorded for the moment ! <h2> </center>";
                 }
+                mysqli_close($id_bd);
             ?>
 
         </table>

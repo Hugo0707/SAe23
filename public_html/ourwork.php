@@ -30,10 +30,11 @@
                 }
                 elseif ($_SESSION['grade'] === 'Manager') {
                     echo "<span class='main_btn'><a href='./connection.php'>Manager</a></span>";
-                }}
-                else {
-                    echo "<span class='main_btn'><a href='./connection.php'>Log In</a></span>";
                 }
+            }
+            else {
+                echo "<span class='main_btn'><a href='./connection.php'>Log In</a></span>";
+            }
             
             ?>
         </nav>  

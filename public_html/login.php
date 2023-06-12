@@ -52,9 +52,11 @@
             //Recovering logins
             try {
                 $result = mysqli_query($id_bd, "SELECT * FROM `view_login`");
-            
-            } catch (Exception) {
-               die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR");
+            } 
+            catch (Exception) 
+            {
+                mysqli_close($id_bd);
+                die("ERROR DATA RECOVERY FAILED PLEASE CONTACT THE ADMINISTRATOR");
             }
         
             //Placement of login and mdp in the credentials table
@@ -92,6 +94,7 @@
                     }, 1500); 
                 </script>';
             }
+            mysqli_close($id_bd);
         
         ?>
 

@@ -55,6 +55,7 @@
             $result = mysqli_query($id_bd, "SELECT ID_building, Name_building FROM `building`");
         
         } catch (Exception $e) {
+            mysqli_close($id_bd);
            die("ERROR DATA RECOVERY FAILED : <br>" . $e);
         }
 
@@ -144,6 +145,7 @@
             try {
                 mysqli_query($id_bd, $query);
             } catch (Exception $e) {
+                mysqli_close($id_bd);
                 die("SQL REQUEST ERROR THE BUILDING HAS NOT BEEN ADDED ! : <br>" . $e);
             }
             
@@ -164,6 +166,8 @@
             </script>';
         }
        
+        mysqli_close($id_bd);
+
     
     ?>
     </section>

@@ -70,7 +70,7 @@
 
             <label for="non">No</label>
             <input type="radio" name="confirm" value="no" id="non">
-            
+        
             <input type="hidden" name="delete" value="<?php echo $id_building;?>">
 
             <input type="submit" value="VSubmit">
@@ -79,32 +79,44 @@
 
 
         <?php 
-
-            if (isset($_POST['confirm'])) {
+        
+            if ((!empty($_POST['confirm']) && ($_POST['confirm'] === "yes"))) {
                 
-                if ($_POST['confirm'] === "yes") {
-
-                    //Record the query that will delete this building from the database in the variable $query
+                if (is_numeric($_POST['delete']))
+                {
+                    //Record the query that will delete this sensor from the database in the variable $query
                     $query = "DELETE FROM building WHERE ID_building = " . $_POST['delete']; 
 
                     try {
                         mysqli_query($id_bd, $query);
                     } catch (Exception $e) {
-                        die("SQL REQUEST ERROR BUILDING NOT DELETED : <br>" . $e );
+                        mysqli_close($id_bd);
+                        die("SQL REQUEST ERROR BUILDING NOT REMOVED : <br>" . $e);
                     }
-
                     echo '
-                        <center> <h1> building successfully removed </h1> </center>
+                        <center> <h1> BUILDING SUCCESSFULLY REMOVED </h1> </center>
                         <script>
                             setTimeout(function() {
                                 window.location.href = "./admin.php";
                             }, 1500); 
                         </script>';
+                }else
+                {
+                    echo '
+                    <center> <h1> ERROR BUILDING NOT REMOVED </h1> </center>
+                    <script>
+                        setTimeout(function() {
+                            window.location.href = "./admin.php";
+                        }, 1500); 
+                    </script>';
                 }
-                elseif ($_POST['confirm'] === "no") {
-                    echo '<script> window.location.href = "./admin.php"; </script>';
-                }
-            }      
+
+            }elseif (!empty($_POST['confirm']) && ($_POST['confirm'] === "no"))
+            {
+                echo '<script> window.location.href = "./admin.php"; </script>';
+            }  
+                  
+            mysqli_close($id_bd);
             ?>
         </section>
     </body>

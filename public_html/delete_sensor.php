@@ -80,20 +80,19 @@
 
         <?php 
 
-            if (isset($_POST['confirm'])) {
+            if ((!empty($_POST['confirm']) && ($_POST['confirm'] === "yes"))) {
                 
-                if ($_POST['confirm'] === "yes") {
-
-                    //Record the query that will delete this sensor from the database in the variable $query
+                //Record the query that will delete this sensor from the database in the variable $query
+                if (is_numeric($_POST['delete']))
+                {
                     $query = "DELETE FROM sensor WHERE ID_sensor = " . $_POST['delete']; 
-                
+
                     try {
                         mysqli_query($id_bd, $query);
                     } catch (Exception $e) {
-                        echo " ERROR :  " . $e;
-                        die("SQL REQUEST ERROR SENSOR NOT DELETED : <br>" . $e);
+                        mysqli_close($id_bd);
+                        die("SQL REQUEST ERROR SENSOR NOT REMOVED : <br>" . $e);
                     }
-
                     echo '
                         <center> <h1> SENSOR SUCCESSFULLY REMOVED </h1> </center>
                         <script>
@@ -101,11 +100,23 @@
                                 window.location.href = "./admin.php";
                             }, 1500); 
                         </script>';
+                }else
+                {
+                    echo '
+                    <center> <h1> ERROR SENSOR NOT REMOVED </h1> </center>
+                    <script>
+                        setTimeout(function() {
+                            window.location.href = "./admin.php";
+                        }, 1500); 
+                    </script>';
                 }
-                elseif ($_POST['confirm'] === "no") {
-                    echo '<script> window.location.href = "./admin.php"; </script>';
-                }
-            }      
+
+            }elseif (!empty($_POST['confirm']) && ($_POST['confirm'] === "no"))
+            {
+                echo '<script> window.location.href = "./admin.php"; </script>';
+            }  
+
+            mysqli_close($id_bd);
             ?>
         </section>
     </body>
