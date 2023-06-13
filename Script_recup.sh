@@ -10,7 +10,7 @@ db_base="c1998364c_sae23"
 > data.txt
 
 # retrieve information from the measure table
-result=$(/opt/lampp/bin/mysql -h $db_host -D $db_base -u $db_user -p$db_pass -sN -e "SELECT ID_sensor, Type_sensor, Room FROM sensor" | jq -R . | jq -s .)
+result=$(/opt/lampp/bin/mysql -h $db_host -D $db_base -u $db_user -p$db_pass -sN -e "SELECT ID_sensor, Type_sensor, Room_sensor FROM sensor" | jq -R . | jq -s .)
 
 # send table information to a file
 for data in $(echo "$result" | jq -r '.[]')
