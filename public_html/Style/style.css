@@ -583,6 +583,16 @@ footer ul li a {
     color: rgb(94, 185, 218);
     margin: 40px;
 }
+.mainAdmin h4 {
+    font-size: 20px;
+    color: rgb(94, 185, 218);
+    margin: 10px;
+}
+.mainAdmin #submit {
+    margin: 50px;
+    width: 20%;
+    background-color: rgb(94, 185, 218);
+}
 .mainAdmin table {
     width: 90%;
     margin: 10px;

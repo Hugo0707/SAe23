@@ -133,8 +133,8 @@
                     echo "<option value='" . $rooms[$i]['Room'] . "'>" . $rooms[$i]['Room'] . "</option>";
                  }
                 echo "</select>
-                <input type='submit' value='Submit'>
-                </form>    
+                <input id='submit' type='submit' value='Submit'>
+                </form> 
                 <tr>
                     <th> Type</th>
                     <th> Room </th>
