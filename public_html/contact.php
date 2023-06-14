@@ -74,9 +74,11 @@
     <footer>
         <ul>
             <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
-            <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
-            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
-            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
+            <li><a href="./legal_Information.php" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
+            <li><a href="https://www.linkedin.com/in/gabin-lopez-168bb525b" target="_blank" class="footer_text" >Lopez</a></li>
+            <li><a href="#" target="_blank" class="footer_text" >Calmels</a></li>
+            <li><a href="#" target="_blank" class="footer_text" >Boulouiha</a></li>
+            <li><a href="https://www.linkedin.com/in/baptiste-alteirac" target="_blank" class="footer_text" >Alteirac</a></li>
         </ul>
     </footer>
 </body>

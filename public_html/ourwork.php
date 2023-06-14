@@ -58,12 +58,24 @@
         <div id="js-message" style="display: block;">
             <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
         </div>
-    </script>
+        </script>
                 <ul class="notice">
                     <li>
                         <h1>Our work: </h1>
                     </li>
                     <li>
+                        <h2>
+                        &bull;Division of time and tasks :
+                        </h2>
+                        <p>
+                        To assign tasks and organize ourselves over time, we set up a GANTT. <br>
+                        During the project, we had to adapt the GANTT forecast slightly, as we had misjudged the time it would take to complete certain tasks.
+                        </p>
+                        <p>Forecast Gantt :</p>
+                        <img src="./Images/Gantt_forecast.png" alt="Forecast Gantt">
+                        </p>
+                        <p>Final Gantt :</p>
+                        <img src="./Images/Gantt_final.png" alt="Final Gantt">
                         <h2>
                         &bull;Hugo's part :
                         </h2>
@@ -80,6 +92,10 @@
 
                         One difficulty I encountered was optimizing the bash script. In fact, in step 4, if there were 4 pieces of data to retrieve, the script would take 40 minutes to run. So I racked my brains to find the right solution to minimize the script execution time to 10 min maximum.
                         </p>
+                        <p>
+                        Relational diagram of our database :
+                        </p>
+                        <img src="./Images/Shema_BD_Final.PNG" alt="Relational diagram of our database">
                         <h2>
                         &bull;Gabin's part :
                         </h2>
@@ -87,6 +103,14 @@
                         I took care of making node-red and grafana, on node-red, I set up the mqtt in to retrieve the mqtt messages we needed from the topic. Then on node-red I downloaded the dashboard to be able to add gauges that I configured according to the building and the room. <br>
                         Then I had to create a sensor database in influxdb to put the values collected from node-red directly into the database. To do this, I had to install a tool on node-red to add the required node. This allowed me to set up the graphs on grafana.
                         </p>
+                        <p>
+                        Result of Grafana :
+                        </p>
+                        <img src="./Images/Grafana_Dashboard_R&T.png" alt="Result of Grafana">
+                        <p>
+                        Result of Node-Red :
+                        </p>
+                        <img src="./Images/Jauge_Building_GIM.png" alt="Result of Node-Red">
                         <h2>
                         &bull;Yassir's part :
                         </h2>
@@ -131,15 +155,25 @@
 
                         Once this task had been completed, I set about writing and translating the various parts of the site, with the exception of the "Our work" section, which was written by all of us.
                         </p>
+                        <p>
+                        Here's a model I made to help me preview the site's final design :
+                        </p>
+                        <img src="./Images/Design.png" alt="preview the site's final design">
+                        <p>
+                        To be able to continue improving my work without losing my old versions, I made great use of a GitHub repository. <br> Here's an example :
+                        </p>
+                        <img src="./Images/GitHub.png" alt="GitHub repository">
                     </li>
                 </ul>
     </section>
     <footer>
         <ul>
             <li><a href="https://www.iut-blagnac.fr/fr/departement-rt" target="_blank" class="footer_text">IUT of Blagnac R&T Department</a></li>
-            <li><a href="#" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
-            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/HTML5.png" alt="HTML 5 Validation"></a></li>
-            <li><a href="#" target="_blank"><img class="img_footer" src="./Images/CSS3.png" alt="CSS 3 Validation"></a></li>
+            <li><a href="./legal_Information.php" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
+            <li><a href="https://www.linkedin.com/in/gabin-lopez-168bb525b" target="_blank" class="footer_text" >Lopez</a></li>
+            <li><a href="#" target="_blank" class="footer_text" >Calmels</a></li>
+            <li><a href="#" target="_blank" class="footer_text" >Boulouiha</a></li>
+            <li><a href="https://www.linkedin.com/in/baptiste-alteirac" target="_blank" class="footer_text" >Alteirac</a></li>
         </ul>
     </footer>
 </body>

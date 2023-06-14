@@ -207,7 +207,7 @@ footer ul{
     display: flex;
     flex-wrap: wrap;
     border-radius: 20px;
-    width: 80%;
+    width: 85%;
     height: 100%;
     align-items: center;
     justify-content: space-between;
@@ -220,11 +220,6 @@ footer ul li a {
     text-align: center;
 }
 
-.img_footer {
-    margin-top: 3px;
-    width: 40PX;
-    height: 40px;
-}
 
 /* ================================================================= */
                             /* Home */
@@ -312,7 +307,7 @@ footer ul li a {
 }
 
 /* ================================================================= */
-                            /* Legal Information */
+                            /* Legal Information / Our work */
 /* ================================================================= */
 .notice {
     padding-bottom: 20px;
@@ -335,7 +330,11 @@ footer ul li a {
     padding-right: 30px;
     text-align: justify;
 }
-
+.notice li img {
+    width: 80%;
+    margin-left: 40px;
+    border-radius: 5px;
+}
 
 /* ================================================================= */
                             /* Form Account */
