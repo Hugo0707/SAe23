@@ -183,7 +183,7 @@ require_once("./config/config.php");
             <li><a href="./legal_Information.php" class="footer_text" >© Copyright 2023 All rights reserved</a></li>
             <li><a href="https://www.linkedin.com/in/gabin-lopez-168bb525b" target="_blank" class="footer_text" >Lopez</a></li>
             <li><a href="https://www.linkedin.com/in/hugo-calmels-50a51727b" target="_blank" class="footer_text" >Calmels</a></li>
-            <li><a href="#" target="_blank" class="footer_text" >Boulouiha</a></li>
+            <li><a href="https://www.linkedin.com/in/yassir-boulouiha-gnaoui-9b226027b/" target="_blank" class="footer_text" >Boulouiha</a></li>
             <li><a href="https://www.linkedin.com/in/baptiste-alteirac" target="_blank" class="footer_text" >Alteirac</a></li>
         </ul>
     </footer>
