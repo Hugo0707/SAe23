@@ -82,15 +82,15 @@
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
-            catch(Exception) {
-                die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATOR");
+            catch(Exceptionv $e) {
+                die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATO");
             }
         
             //Recovery of measurements, buildings and rooms
             try {
-                $result_measures = mysqli_query($id_bd, "SELECT Type_sensor, Building, Room, Value, Date, Time FROM view_sensor_page WHERE Building = '" . $_SESSION['building'] . "';");
-                $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor FROM `view_sensor_page` WHERE Building = '" . $_SESSION['building'] . "';");
-                $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_sensor_page` WHERE Building = '" . $_SESSION['building'] . "';");
+                $result_measures = mysqli_query($id_bd, "SELECT DISTINCT Type_sensor, Building, Room, Value, Date, Time FROM view_manager_page WHERE Building = '" . $_SESSION['building'] . "' ORDER BY Date DESC;");
+                $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor FROM `view_manager_page` WHERE Building = '" . $_SESSION['building'] . "';");
+                $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_manager_page` WHERE Building = '" . $_SESSION['building'] . "';");
             } 
             catch(Exception) {
                 mysqli_close($id_bd);
