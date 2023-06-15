@@ -73,7 +73,7 @@
         
             <input type="hidden" name="delete" value="<?php echo $id_building;?>">
 
-            <input type="submit" value="VSubmit">
+            <input type="submit" value="Submit">
         </form>
 
 

@@ -2,8 +2,8 @@
 
     //DB identifiers
     $dbHost = "localhost";
-    $dbUser = "c1998364c";    
-    $dbPass = 'sae23';       //Enter user password, if no password for user leave blank
+    $dbUser = "root";    
+    $dbPass = '';       //Enter user password, if no password for user leave blank
     $dbName = "sae23";      //Name of the database to be used
 
     //Rooms in the iut buildings

@@ -35,7 +35,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('js-message').style.display = 'none';
         });
-        </script>
+    </script>
 
         <div id="js-message" style="display: block;">
             <center> <h1> Please enable JavaScript to allow the site to function properly. </h1> </center>
@@ -81,7 +81,6 @@
 
                             if ($buildings[$i]['Name_building'] == $key )
                             {
-                                echo $buildings[$i]['Name_building'] . $key;
                                 $display = false;
                             }
                         }
