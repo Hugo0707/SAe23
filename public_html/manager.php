@@ -82,13 +82,13 @@
             try {
                 $id_bd = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
             } 
-            catch(Exceptionv $e) {
-                die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATO");
+            catch(Exception) {
+                die("DATABASE CONNECTION ERROR PLEASE CONTACT THE ADMINISTRATOR");
             }
         
             //Recovery of measurements, buildings and rooms
             try {
-                $result_measures = mysqli_query($id_bd, "SELECT DISTINCT Type_sensor, Building, Room, Value, Date, Time FROM view_manager_page WHERE Building = '" . $_SESSION['building'] . "' ORDER BY Date DESC;");
+                $result_measures = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor, Building, Room, Value, Date, Time FROM view_manager_page WHERE Building = '" . $_SESSION['building'] . "' ORDER BY Date, Time DESC;");
                 $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor FROM `view_manager_page` WHERE Building = '" . $_SESSION['building'] . "';");
                 $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_manager_page` WHERE Building = '" . $_SESSION['building'] . "';");
             } 
@@ -163,11 +163,11 @@
                             <!-- Form for collecting user-selected filters -->
 
                             <h2>&bull; Sensors selection</h2>
-                            <select name='Type_sensor'>
+                            <select name='Type_Sensor'>
                                 <option value='' selected></option>";
                                 
                             for ($i=0; $i <count($sensors) ; $i++) { 
-                                echo "<option value='" . $sensors[$i]['Type_sensor'] . "'>" . $sensors[$i]['Type_sensor'] . "</option>";
+                                echo "<option value='" . $sensors[$i]['Type_Sensor'] . "'>" . $sensors[$i]['Type_Sensor'] . "</option>";
                             }
 
                     echo "</select>
