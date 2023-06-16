@@ -1,4 +1,0 @@
-#This prohibits any operation on this file by a user on the Internet
-<Files "config.php">
-  Deny from all
-</Files>
