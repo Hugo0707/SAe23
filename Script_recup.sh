@@ -2,7 +2,7 @@
 
 # database connection parameter
 db_user="c1998364c_admin"
-db_pass="?&([RSeh;]SQ"
+db_pass='AKtcKu)3M!?w'
 db_host="91.234.195.40"
 db_base="c1998364c_sae23"
 
