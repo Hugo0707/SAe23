@@ -26,7 +26,7 @@ require_once("./config/config.php");
 
         //Collecting measurements from buildings and sensor types
         try {
-            $result_measures = mysqli_query($id_bd, "SELECT * FROM `view_sensor_page`");
+            $result_measures = mysqli_query($id_bd, "SELECT DISTINCT * FROM `view_sensor_page`");
             $result_buildings = mysqli_query($id_bd, "SELECT Name_Building AS Building FROM `building`");
             $result_sensors = mysqli_query($id_bd, "SELECT DISTINCT Type_Sensor FROM `view_sensor_page`");
             $result_rooms = mysqli_query($id_bd, "SELECT DISTINCT Room FROM `view_sensor_page`");
